@@ -1,16 +1,19 @@
 package com.ijsbss.rollover.data.db
 
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import com.ijsbss.rollover.data.entities.Category
+import androidx.lifecycle.LiveData
+import androidx.room.*
 
 @Dao
 interface CategoryDao {
+
     @Query("SELECT * FROM categories ORDER BY view_order")
-    fun getCategories(): MutableList<Category>
+    fun getCategories():LiveData<List<Category>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(categories: MutableList<Category>)
+    suspend fun insertAll(categories: Category)
+
+    @Query("DELETE FROM categories")
+    suspend fun deleteAll()
+
 }

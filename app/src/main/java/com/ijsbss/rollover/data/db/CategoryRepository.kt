@@ -1,4 +1,17 @@
 package com.ijsbss.rollover.data.db
 
-class CategoryRepository {
+import com.ijsbss.rollover.data.entities.Category
+
+class CategoryRepository(private val dao: CategoryDao) {
+
+    val categories = dao.getCategories()
+
+    suspend fun insert(category: Category){
+        dao.insertAll(category)
+    }
+
+    suspend fun deleteAll(){
+        dao.deleteAll()
+    }
+
 }

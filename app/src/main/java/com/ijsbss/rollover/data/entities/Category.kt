@@ -6,16 +6,32 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "categories")
 data class Category(
-        @PrimaryKey @ColumnInfo(name = "id") var categoryId: Int,
 
-        var name: String,
-        var expectation: Float,
-        @ColumnInfo(name = "total_spent") var totalSpent: Float,
+        @PrimaryKey(autoGenerate = true)
+        @ColumnInfo(name = "category_id")
+        val id: Int,
 
-        // In number of days
-        @ColumnInfo(name = "rollover_period") var rolloverPeriod: Byte,
-        var color: String,
-        var threshold: Float,
-        @ColumnInfo(name = "expenses_id") var expensesId: Int,
-        @ColumnInfo(name = "view_order") var viewOrder: Byte,
+        @ColumnInfo(name = "name")
+        val name: String,
+
+        @ColumnInfo(name = "expectation")
+        val expectation: Float,
+
+        @ColumnInfo(name = "total_spent")
+        val totalSpent: Float,
+
+        @ColumnInfo(name = "rollover_period")
+        val rolloverPeriod: Byte,
+
+        @ColumnInfo(name = "color")
+        val color: String,
+
+        @ColumnInfo(name = "threshold")
+        val threshold: Float,
+
+        @ColumnInfo(name = "expenses_id")
+        val expensesId: Int,
+
+        @ColumnInfo(name = "view_order")
+        val viewOrder: Byte
 )
