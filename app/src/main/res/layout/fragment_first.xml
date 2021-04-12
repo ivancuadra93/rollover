@@ -14,65 +14,26 @@
         android:layout_margin="15dp"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/name_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:ems="10"
-            android:text="@={myViewModel.inputName}"
-            android:hint="Category's name"
-            android:inputType="textPersonName"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/textview_first"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
-            android:text="@={myViewModel.firstFragmentText}"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/save_or_update_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@={myViewModel.saveOrUpdateButtonText}"
-                android:onClick="@{()->myViewModel.saveOrUpdate()}"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/clear_all_or_delete_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@={myViewModel.clearAllOrDeleteButtonText}"
-                android:onClick="@{()->myViewModel.clearAllOrDelete()}"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
 
         <Button
-            android:id="@+id/button_first"
-            android:layout_width="match_parent"
+            android:id="@+id/add_category_button"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@={myViewModel.nextButtonText}" />
+            android:layout_marginTop="150dp"
+            android:height="70dp"
+            android:backgroundTint="#DFD793"
+            android:ellipsize="middle"
+            android:text="@={myViewModel.nextButtonText}"
+            android:translationX="300dp"
+            app:cornerRadius="50dp"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconTint="#202020" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_height="423dp"
+            android:layout_marginTop="50dp" />
+
     </LinearLayout>
 </layout>
