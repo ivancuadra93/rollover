@@ -27,5 +27,6 @@ class MyRecyclerViewAdapter(private val categoriesList: List<Category>) : Recycl
 class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root){
     fun bind(category: Category){
         binding.nameTextView.text = category.name
+        binding.totalSpentView.text = category.totalSpent.toString()
     }
 }

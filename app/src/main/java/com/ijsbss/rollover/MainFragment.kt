@@ -14,24 +14,24 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
-import com.ijsbss.rollover.databinding.FragmentFirstBinding
+import com.ijsbss.rollover.databinding.FragmentMainBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment() : Fragment()  {
+class MainFragment() : Fragment()  {
 
-    private lateinit var firstFragmentViewModel: FirstFragmentViewModel //by viewModels()
-    private var _binding: FragmentFirstBinding? = null
+    private lateinit var mainFragmentViewModel: MainFragmentViewModel //by viewModels()
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         val dao = AppDatabase.getInstance(requireActivity().application).categoryDao
         val repository = CategoryRepository(dao)
-        val factory = FirstFragmentViewModelFactory(repository)
-        firstFragmentViewModel = ViewModelProvider(this, factory).get(FirstFragmentViewModel::class.java)
-        binding.myViewModel = firstFragmentViewModel
+        val factory = MainFragmentViewModelFactory(repository)
+        mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
+        binding.myViewModel = mainFragmentViewModel
         binding.lifecycleOwner = this
         initRecyclerView()
         return binding.root
@@ -41,7 +41,7 @@ class FirstFragment() : Fragment()  {
 
         super.onViewCreated(view, savedInstanceState)
             view.findViewById<Button>(R.id.add_category_button).setOnClickListener {
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment)
             }
     }
 
@@ -51,7 +51,7 @@ class FirstFragment() : Fragment()  {
     }
 
     private fun displayCategoriesList(){
-        firstFragmentViewModel.categories.observe(binding.lifecycleOwner!!, Observer {
+        mainFragmentViewModel.categories.observe(binding.lifecycleOwner!!, Observer {
             Log.i("MYTAG", it.toString())
             binding.categoryRecyclerView.adapter = MyRecyclerViewAdapter(it)
         })

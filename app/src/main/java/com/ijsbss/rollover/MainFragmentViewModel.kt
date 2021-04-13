@@ -1,18 +1,12 @@
 package com.ijsbss.rollover
 
-import androidx.databinding.Bindable
 import androidx.databinding.Observable
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ijsbss.rollover.data.db.CategoryRepository
 
-class SecondFragmentViewModel(): ViewModel(), Observable {
+class MainFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
 
-    @Bindable
-    val previousButtonText = MutableLiveData<String>()
-
-    init {
-        previousButtonText.value = "Previous"
-    }
+    val categories = repository.categories
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
 
@@ -21,6 +15,4 @@ class SecondFragmentViewModel(): ViewModel(), Observable {
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
 
     }
-
-
 }

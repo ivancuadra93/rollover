@@ -2,8 +2,8 @@
     <string name="app_name">Rollover</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="main_fragment_label">Main Fragment</string>
+    <string name="add_category_fragment_label">Add Category Fragment</string>
     <string name="color">Color</string>
     <string name="month">Month</string>
 

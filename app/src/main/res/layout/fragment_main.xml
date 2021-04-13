@@ -5,21 +5,8 @@
     <data>
         <variable
             name="myViewModel"
-            type="com.ijsbss.rollover.FirstFragmentViewModel" />
+            type="com.ijsbss.rollover.MainFragmentViewModel" />
     </data>
-
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="#9C9C9C"-->
-<!--        android:theme="@style/Theme.Rollover.AppBarOverlay">-->
-
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            android:background="#A1A189"-->
-<!--            app:popupTheme="@style/Theme.Rollover.PopupOverlay" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +39,6 @@
             android:height="70dp"
             android:backgroundTint="#DFCBCC"
             android:ellipsize="middle"
-            android:text="@={myViewModel.nextButtonText}"
             android:translationX="300dp"
             app:cornerRadius="50dp"
             app:icon="@android:drawable/ic_input_add"
@@ -65,7 +51,5 @@
             android:layout_marginTop="10dp" />
 
     </LinearLayout>
-
 <!--    </com.google.android.material.appbar.AppBarLayout>-->
-
 </layout>

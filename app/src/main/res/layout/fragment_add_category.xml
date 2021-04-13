@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="myViewModel"
-            type="com.ijsbss.rollover.SecondFragmentViewModel" />
+            name="ViewModel"
+            type="com.ijsbss.rollover.AddCategoryFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SecondFragment">
+        tools:context=".AddCategoryFragment">
 
         <Button
             android:id="@+id/cancel_button"
@@ -45,7 +45,7 @@
             android:layout_marginTop="116dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@={myViewModel.inputName}"
+            android:text="@={ViewModel.inputName}"
             app:layout_constraintStart_toEndOf="@+id/category_name_label"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,7 +68,7 @@
             android:layout_marginTop="208dp"
             android:ems="10"
             android:inputType="numberDecimal"
-            android:text="@={myViewModel.inputExpectation}"
+            android:text="@={ViewModel.inputExpectation}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +91,7 @@
             android:layout_marginEnd="120dp"
             android:ems="10"
             android:inputType="number"
-            android:text="@={myViewModel.inputRolloverPeriod}"
+            android:text="@={ViewModel.inputRolloverPeriod}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -155,7 +155,7 @@
             android:layout_marginEnd="80dp"
             android:ems="10"
             android:inputType="number"
-            android:text="@={myViewModel.inputThreshold}"
+            android:text="@={ViewModel.inputThreshold}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -176,14 +176,13 @@
             android:layout_height="60dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="92dp"
-            android:onClick="@{()-> myViewModel.saveOrUpdate()}"
             android:text="@string/save"
             app:layout_constraintStart_toEndOf="@+id/cancel_button"
             app:layout_constraintTop_toBottomOf="@+id/threshold_amount" />
 
         <TextView
             android:id="@+id/header_name"
-            android:layout_width="421dp"
+            android:layout_width="410dp"
             android:layout_height="59dp"
             android:background="#DFCBCC"
             android:text="@string/addcategory"
