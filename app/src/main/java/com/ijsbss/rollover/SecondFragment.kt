@@ -20,7 +20,7 @@ class SecondFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
         binding.myViewModel = secondFragmentViewModel
         binding.lifecycleOwner = this
         // Inflate the layout for this fragment

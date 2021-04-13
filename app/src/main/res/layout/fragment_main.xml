@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="myViewModel"
+            type="com.ijsbss.rollover.FirstFragmentViewModel" />
+    </data>
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#9C9C9C"-->
+<!--        android:theme="@style/Theme.Rollover.AppBarOverlay">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="#A1A189"-->
+<!--            app:popupTheme="@style/Theme.Rollover.PopupOverlay" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/rollover_header"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="#A1A189"
+            android:text="@string/rollover"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="40sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="217dp"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <Button
+            android:id="@+id/add_category_button"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:height="70dp"
+            android:backgroundTint="#DFCBCC"
+            android:ellipsize="middle"
+            android:text="@={myViewModel.nextButtonText}"
+            android:translationX="300dp"
+            app:cornerRadius="50dp"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconTint="#202020" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+</layout>
