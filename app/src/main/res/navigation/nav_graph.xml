@@ -15,6 +15,7 @@
             android:id="@+id/action_MainFragment_to_AddCategoryFragment"
             app:destination="@id/AddCategoryFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/AddCategoryFragment"
         android:name="com.ijsbss.rollover.AddCategoryFragment"

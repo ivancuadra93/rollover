@@ -20,4 +20,13 @@
     <string name="save">Save</string>
     <string name="addcategory">AddCategory</string>
     <string name="rollover">Rollover</string>
+
+    <string-array name="colors">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Purple</item>
+    </string-array>
 </resources>

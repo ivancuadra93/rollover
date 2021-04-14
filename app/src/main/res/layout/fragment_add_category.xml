@@ -41,11 +41,13 @@
             android:id="@+id/category_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="116dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@={ViewModel.inputName}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/category_name_label"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +55,8 @@
             android:id="@+id/expectation_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="216dp"
             android:text="@string/expectation"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,12 +66,12 @@
             android:id="@+id/expectation_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="172dp"
-            android:layout_marginTop="208dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="200dp"
             android:ems="10"
             android:inputType="numberDecimal"
             android:text="@={ViewModel.inputExpectation}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/expectation_label"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -83,66 +85,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <EditText
             android:id="@+id/period_input"
             android:layout_width="113dp"
             android:layout_height="43dp"
             android:layout_marginTop="316dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginEnd="124dp"
             android:ems="10"
             android:inputType="number"
             android:text="@={ViewModel.inputRolloverPeriod}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/day_button"
-            android:layout_width="61dp"
-            android:layout_height="23dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="36dp"
-            android:text="@string/day"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expectation_amount" />
-
-        <RadioButton
-            android:id="@+id/week_button"
-            android:layout_width="75dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:text="@string/week"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/day_button" />
-
-        <RadioButton
-            android:id="@+id/month_button"
-            android:layout_width="83dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/month"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/week_button" />
-
         <TextView
             android:id="@+id/color_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="408dp"
             android:text="@string/color"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/threshold_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="504dp"
-            android:text="@string/threshold"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -151,8 +113,8 @@
             android:id="@+id/threshold_amount"
             android:layout_width="174dp"
             android:layout_height="55dp"
-            android:layout_marginTop="488dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginTop="468dp"
+            android:layout_marginEnd="60dp"
             android:ems="10"
             android:inputType="number"
             android:text="@={ViewModel.inputThreshold}"
@@ -160,15 +122,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/threshold_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="484dp"
+            android:text="@string/threshold"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/percent_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="37dp"
             android:text="@string/percent_sign"
             android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/month_button" />
+            app:layout_constraintStart_toEndOf="@+id/threshold_amount"
+            app:layout_constraintTop_toBottomOf="@+id/color_picker" />
 
         <Button
             android:id="@+id/save_button"
@@ -193,6 +166,50 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/color_picker"
+            android:layout_width="167dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="48dp"
+            android:entries="@array/colors"
+            android:text="Color"
+            app:layout_constraintStart_toEndOf="@+id/color_label"
+            app:layout_constraintTop_toBottomOf="@+id/period_input" />
+
+        <RadioGroup
+            android:id="@+id/rollover_frequency"
+            android:layout_width="90dp"
+            android:layout_height="157dp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@+id/period_input"
+            app:layout_constraintTop_toBottomOf="@+id/expectation_amount">
+
+            <RadioButton
+                android:id="@+id/day_button"
+                android:layout_width="61dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="28dp"
+                android:text="@string/day" />
+
+            <RadioButton
+                android:id="@+id/week_button"
+                android:layout_width="75dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/week" />
+
+            <RadioButton
+                android:id="@+id/month_button"
+                android:layout_width="83dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/month" />
+        </RadioGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
