@@ -35,7 +35,9 @@ class CategoryDaoTest {
         categoryDao = db.categoryDao()
 
         // Insert categories out of order
-        categoryDao.insertAll(arrayListOf(categoryB, categoryC, categoryA))
+        categoryDao.insert(categoryB)
+        categoryDao.insert(categoryC)
+        categoryDao.insert(categoryA)
     }
 
     @After

@@ -6,17 +6,12 @@ import androidx.room.*
 
 @Dao
 interface CategoryDao {
-
     @Query("SELECT * FROM categories ORDER BY view_order")
     fun getCategories(): LiveData<MutableList<Category>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(categories: MutableList<Category>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: Category)
 
     @Query("DELETE FROM categories")
     suspend fun deleteAll()
-
 }

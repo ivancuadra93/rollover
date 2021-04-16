@@ -8,25 +8,27 @@ import com.ijsbss.rollover.data.entities.Category
 
 @Database(entities = [Category::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun categoryDao() : CategoryDao
 
     companion object{
         @Volatile
-        private var INSTANCE : AppDatabase? = null
-            fun getInstance(context: Context) : AppDatabase{
-                synchronized(this){
-                    var instance : AppDatabase? = INSTANCE
-                    if(instance==null){
-                        instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            AppDatabase::class.java,
-                            "categories"
-                        ).build()
-                    }
-                    return instance
+        private var INSTANCE: AppDatabase? = null
+
+        fun getInstance(context: Context) : AppDatabase{
+            synchronized(this) {
+                var instance: AppDatabase? = INSTANCE
+
+                if(instance == null) {
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java,
+                        "rollover-db"
+                    ).build()
                 }
+
+                return instance
             }
+        }
     }
 
 }
