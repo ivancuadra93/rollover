@@ -47,9 +47,7 @@ class CategoryDaoTest {
 
     @Test
     fun testGetCategories() = runBlocking {
-        val categoryList = categoryDao.getCategories()
-
-        categoryList.observeForever(Observer { categories ->
+        categoryDao.getCategories().observeForever(Observer { categories ->
             assertThat(categories.size, equalTo(3))
 
             // Ensure category list is sorted by view order
