@@ -12,4 +12,8 @@ class CategoryRepository(private val dao: CategoryDao) {
     suspend fun deleteAll(){
         dao.deleteAll()
     }
+
+    suspend fun delete(category: Category) {
+        dao.delete(category)
+    }
 }

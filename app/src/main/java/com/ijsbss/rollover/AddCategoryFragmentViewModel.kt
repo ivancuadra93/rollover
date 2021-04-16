@@ -12,7 +12,6 @@ import com.ijsbss.rollover.data.entities.Category
 import kotlinx.coroutines.launch
 
 class AddCategoryFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
-
     val categories = repository.categories
 
     @Bindable
@@ -62,6 +61,12 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     private fun insert(category: Category){
         viewModelScope.launch {
             repository.insert(category)
+        }
+    }
+
+    private fun delete(category: Category){
+        viewModelScope.launch {
+            repository.delete(category)
         }
     }
 

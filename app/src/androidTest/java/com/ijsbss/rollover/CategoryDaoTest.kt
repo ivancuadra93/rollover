@@ -57,4 +57,12 @@ class CategoryDaoTest {
             assertThat(categories[2], equalTo(categoryC))
         })
     }
+
+    @Test
+    fun testDeleteCategory() = runBlocking {
+        categoryDao.delete(categoryB)
+        categoryDao.getCategories().observeForever(Observer { categories ->
+            assertThat(categories.size, equalTo(2))
+        })
+    }
 }
