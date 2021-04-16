@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentAddCategoryBinding
-import kotlinx.android.synthetic.main.fragment_add_category.view.*
+//import kotlinx.android.synthetic.main.fragment_add_category.view.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -25,7 +25,7 @@ class AddCategoryFragment : Fragment() {
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
-        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao
+        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
         val repository = CategoryRepository(dao)
         addCategoryFragmentViewModel = AddCategoryFragmentViewModel(repository)
         binding.viewModel = addCategoryFragmentViewModel

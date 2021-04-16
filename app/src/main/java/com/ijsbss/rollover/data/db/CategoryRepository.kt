@@ -7,7 +7,7 @@ class CategoryRepository(private val dao: CategoryDao) {
     val categories = dao.getCategories()
 
     suspend fun insert(category: Category){
-        dao.insertAll(category)
+        dao.insert(category)
     }
 
     suspend fun deleteAll(){

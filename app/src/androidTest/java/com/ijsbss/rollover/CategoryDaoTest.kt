@@ -1,5 +1,7 @@
 package com.ijsbss.rollover
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.*
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -7,11 +9,11 @@ import kotlinx.coroutines.runBlocking
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryDao
 import com.ijsbss.rollover.data.entities.Category
-import kotlinx.coroutines.flow.toList
 import org.hamcrest.Matchers.equalTo
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -22,6 +24,9 @@ class CategoryDaoTest {
     private val categoryA = Category(1234, "A", 120.00f, 32.54f, 14, "red", 20.00f, 10, 1)
     private val categoryB = Category(1285, "B", 140.00f, 74.21f, 14, "blue", 20.00f, 11,2)
     private val categoryC = Category(1676, "C", 190.00f, 85.60f, 14, "green", 20.00f, 12, 3)
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun createDb() = runBlocking {
@@ -42,12 +47,13 @@ class CategoryDaoTest {
     fun testGetCategories() = runBlocking {
         val categoryList = categoryDao.getCategories()
 
-        assertThat(categoryList.size, equalTo(3))
+        categoryList.observeForever(Observer { categories ->
+            assertThat(categories.size, equalTo(3))
 
-        // Ensure category list is sorted by view order
-        assertThat(categoryList[0], equalTo(categoryA))
-        assertThat(categoryList[1], equalTo(categoryB))
-        assertThat(categoryList[2], equalTo(categoryC))
+            // Ensure category list is sorted by view order
+            assertThat(categories[0], equalTo(categoryA))
+            assertThat(categories[1], equalTo(categoryB))
+            assertThat(categories[2], equalTo(categoryC))
+        })
     }
-
 }

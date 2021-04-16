@@ -27,7 +27,7 @@ class MainFragment() : Fragment()  {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao
+        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
         val repository = CategoryRepository(dao)
         val factory = MainFragmentViewModelFactory(repository)
         mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
