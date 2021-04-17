@@ -1,5 +1,6 @@
 package com.ijsbss.rollover
 
+import android.graphics.Color
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.*
 import androidx.room.Room
@@ -21,9 +22,9 @@ import org.junit.runner.RunWith
 class CategoryDaoTest {
     private lateinit var db: AppDatabase
     private lateinit var categoryDao: CategoryDao
-    private val categoryA = Category(1234, "A", 120.00f, 32.54f, 14, "red", 20.00f, 10, 1)
-    private val categoryB = Category(1285, "B", 140.00f, 74.21f, 14, "blue", 20.00f, 11,2)
-    private val categoryC = Category(1676, "C", 190.00f, 85.60f, 14, "green", 20.00f, 12, 3)
+    private val categoryA = Category(1234, "A", 120.00f, 32.54f, 14, Color.RED, 20.00f, 10, 1)
+    private val categoryB = Category(1285, "B", 140.00f, 74.21f, 14, Color.BLUE, 20.00f, 11,2)
+    private val categoryC = Category(1676, "C", 190.00f, 85.60f, 14, Color.GREEN, 20.00f, 12, 3)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

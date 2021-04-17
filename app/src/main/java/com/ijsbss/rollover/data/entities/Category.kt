@@ -1,7 +1,5 @@
 package com.ijsbss.rollover.data.entities
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
