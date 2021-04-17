@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="ViewModel"
+            type="com.ijsbss.rollover.AddCategoryFragmentViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AddCategoryFragment">
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="103dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="92dp"
+            android:text="@string/cancel"
+            android:visibility="visible"
+            app:iconTint="#0C0B0B"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/threshold_label"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/category_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/name"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_name" />
+
+        <EditText
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={ViewModel.inputName}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_name" />
+
+        <TextView
+            android:id="@+id/expectation_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/expectation"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_name_label" />
+
+        <EditText
+            android:id="@+id/expectation_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@={ViewModel.inputExpectation}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_name" />
+
+
+        <TextView
+            android:id="@+id/period_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/rollover_period"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expectation_label" />
+
+        <EditText
+            android:id="@+id/period_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ViewModel.inputRolloverPeriod}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/expectation_amount" />
+
+        <TextView
+            android:id="@+id/color_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/color"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/period_label" />
+
+        <EditText
+            android:id="@+id/threshold_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="@={ViewModel.inputThreshold}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/color_picker" />
+
+        <TextView
+            android:id="@+id/threshold_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
+            android:text="@string/threshold"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/color_label" />
+
+        <TextView
+            android:id="@+id/percent_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="444dp"
+            android:text="@string/percent_sign"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/threshold_amount"
+            app:layout_constraintTop_toBottomOf="@+id/header_name" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="117dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="60dp"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/threshold_amount" />
+
+        <TextView
+            android:id="@+id/header_name"
+            android:layout_width="0dp"
+            android:layout_height="68dp"
+            android:background="#DFCBCC"
+            android:text="@string/addCategory"
+            android:textAlignment="center"
+            android:textColor="#0E0E0E"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/color_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
+            android:entries="@array/colors"
+            android:text="Color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/period_input" />
+
+        <!--        <RadioGroup-->
+<!--            android:id="@+id/rollover_frequency"-->
+<!--            android:layout_width="112dp"-->
+<!--            android:layout_height="159dp"-->
+<!--            android:layout_marginStart="6dp"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/period_input"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/expectation_amount">-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/daily_button"-->
+<!--                android:layout_width="74dp"-->
+<!--                android:layout_height="23dp"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:layout_marginEnd="28dp"-->
+<!--                android:text="@string/daily" />-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/weekly_button"-->
+<!--                android:layout_width="93dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:text="@string/weekly" />-->
+
+<!--            <RadioButton-->
+<!--                android:id="@+id/biweekly_button"-->
+<!--                android:layout_width="101dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+
+<!--                android:text="@string/biweekly" />-->
+<!--        </RadioGroup>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
