@@ -24,13 +24,12 @@
             <LinearLayout
                 android:id="@+id/list_item_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="113dp">
 
                 <TextView
                     android:id="@+id/name_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="248dp"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:text="TextView"
                     android:textColor="#FFFFFF"
@@ -40,7 +39,7 @@
                 <TextView
                     android:id="@+id/total_spent_view"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:text="TextView"
                     android:textColor="#FFFFFF"

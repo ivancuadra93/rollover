@@ -5,20 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.*
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentAddCategoryBinding
 //import kotlinx.android.synthetic.main.fragment_add_category.view.*
 
+
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class AddCategoryFragment : Fragment() {
+class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var addCategoryFragmentViewModel: AddCategoryFragmentViewModel
     private var _binding: FragmentAddCategoryBinding? = null
     private val binding get() = _binding!!
@@ -36,10 +35,32 @@ class AddCategoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//            if((addCategoryFragmentViewModel.inputName.value == null || addCategoryFragmentViewModel.inputExpectation.value == null || addCategoryFragmentViewModel.inputRolloverPeriod.value == null || addCategoryFragmentViewModel.inputThreshold.value == null )){
-//                view.findViewById<Button>(R.id.save_button).isEnabled = false
+
+//            fun onRadioButtonClicked(view: View){
+//                if (view is RadioButton){
+//                    val checked = view.isChecked
+//
+//                    when(view.getId()){
+//                        R.id.daily_button -> if (checked){
+//                            addCategoryFragmentViewModel.inputRolloverPeriod.value = (addCategoryFragmentViewModel.inputRolloverPeriod.value?.toByte()?.times(7)).toString()
+//
+//                        }
+//                        R.id.weekly_button -> if (checked){
+//                            addCategoryFragmentViewModel.inputRolloverPeriod.value = (addCategoryFragmentViewModel.inputRolloverPeriod.value?.toByte()?.times(4)).toString()
+//
+//                        }
+//                        R.id.biweekly_button -> if(checked){
+//
+//                        }
+//                    }
+//                }
 //            }
 
+            //color drop down click event
+            val spinner : Spinner = view.findViewById(R.id.color_picker)
+            spinner.onItemSelectedListener = this
+
+            //save click event
             view.findViewById<Button>(R.id.save_button).setOnClickListener {
                 if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
                     addCategoryFragmentViewModel.saveOrUpdate()
@@ -49,9 +70,19 @@ class AddCategoryFragment : Fragment() {
 
                 }
             }
+
+            //cancel click event
             view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
+
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        addCategoryFragmentViewModel.inputColor.value = parent?.getItemAtPosition(position).toString()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
 
     }
 
@@ -59,4 +90,5 @@ class AddCategoryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

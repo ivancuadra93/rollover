@@ -1,7 +1,10 @@
 package com.ijsbss.rollover
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.DrawableRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ijsbss.rollover.data.entities.Category
@@ -27,6 +30,7 @@ class MyRecyclerViewAdapter(private val categoriesList: List<Category>) : Recycl
 class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root){
     fun bind(category: Category){
         binding.nameTextView.text = category.name
-        binding.totalSpentView.text = category.totalSpent.toString()
+        binding.totalSpentView.text = "$" + category.totalSpent.toString()
+        binding.cardView.setCardBackgroundColor(category.color)
     }
 }

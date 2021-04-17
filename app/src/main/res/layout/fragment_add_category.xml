@@ -17,7 +17,7 @@
             android:id="@+id/cancel_button"
             android:layout_width="103dp"
             android:layout_height="61dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="92dp"
             android:text="@string/cancel"
             android:visibility="visible"
@@ -30,135 +30,135 @@
             android:id="@+id/category_name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
-            android:layout_marginEnd="308dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
             android:text="@string/name"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_name" />
 
         <EditText
             android:id="@+id/category_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@={ViewModel.inputName}"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/category_name_label"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/header_name" />
 
         <TextView
             android:id="@+id/expectation_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="216dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
             android:text="@string/expectation"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/category_name_label" />
 
         <EditText
             android:id="@+id/expectation_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="numberDecimal"
             android:text="@={ViewModel.inputExpectation}"
-            app:layout_constraintStart_toEndOf="@+id/expectation_label"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_name" />
+
 
         <TextView
             android:id="@+id/period_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="316dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
             android:text="@string/rollover_period"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@+id/expectation_label" />
 
         <EditText
             android:id="@+id/period_input"
-            android:layout_width="113dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="316dp"
-            android:layout_marginEnd="124dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="number"
             android:text="@={ViewModel.inputRolloverPeriod}"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/expectation_amount" />
 
         <TextView
             android:id="@+id/color_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="408dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
             android:text="@string/color"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/period_label" />
 
         <EditText
             android:id="@+id/threshold_amount"
-            android:layout_width="174dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="468dp"
-            android:layout_marginEnd="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
             android:ems="10"
             android:inputType="number"
             android:text="@={ViewModel.inputThreshold}"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/color_picker" />
 
         <TextView
             android:id="@+id/threshold_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="484dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="72dp"
             android:text="@string/threshold"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/color_label" />
 
         <TextView
             android:id="@+id/percent_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="37dp"
             android:text="@string/percent_sign"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/threshold_amount"
-            app:layout_constraintTop_toBottomOf="@+id/color_picker" />
+            tools:layout_editor_absoluteY="512dp" />
 
         <Button
             android:id="@+id/save_button"
             android:layout_width="117dp"
             android:layout_height="60dp"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="60dp"
             android:text="@string/save"
-            app:layout_constraintStart_toEndOf="@+id/cancel_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/threshold_amount" />
 
         <TextView
             android:id="@+id/header_name"
-            android:layout_width="410dp"
-            android:layout_height="59dp"
+            android:layout_width="0dp"
+            android:layout_height="68dp"
             android:background="#DFCBCC"
-            android:text="@string/addcategory"
+            android:text="@string/addCategory"
             android:textAlignment="center"
             android:textColor="#0E0E0E"
             android:textSize="36sp"
@@ -169,47 +169,48 @@
 
         <Spinner
             android:id="@+id/color_picker"
-            android:layout_width="167dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="30dp"
             android:entries="@array/colors"
             android:text="Color"
-            app:layout_constraintStart_toEndOf="@+id/color_label"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/period_input" />
 
-        <RadioGroup
-            android:id="@+id/rollover_frequency"
-            android:layout_width="90dp"
-            android:layout_height="157dp"
-            android:layout_marginStart="6dp"
-            app:layout_constraintStart_toEndOf="@+id/period_input"
-            app:layout_constraintTop_toBottomOf="@+id/expectation_amount">
+        <!--        <RadioGroup-->
+<!--            android:id="@+id/rollover_frequency"-->
+<!--            android:layout_width="112dp"-->
+<!--            android:layout_height="159dp"-->
+<!--            android:layout_marginStart="6dp"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/period_input"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/expectation_amount">-->
 
-            <RadioButton
-                android:id="@+id/day_button"
-                android:layout_width="61dp"
-                android:layout_height="23dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="28dp"
-                android:text="@string/day" />
+<!--            <RadioButton-->
+<!--                android:id="@+id/daily_button"-->
+<!--                android:layout_width="74dp"-->
+<!--                android:layout_height="23dp"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:layout_marginEnd="28dp"-->
+<!--                android:text="@string/daily" />-->
 
-            <RadioButton
-                android:id="@+id/week_button"
-                android:layout_width="75dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/week" />
+<!--            <RadioButton-->
+<!--                android:id="@+id/weekly_button"-->
+<!--                android:layout_width="93dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+<!--                android:text="@string/weekly" />-->
 
-            <RadioButton
-                android:id="@+id/month_button"
-                android:layout_width="83dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:text="@string/month" />
-        </RadioGroup>
+<!--            <RadioButton-->
+<!--                android:id="@+id/biweekly_button"-->
+<!--                android:layout_width="101dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="24dp"-->
+
+<!--                android:text="@string/biweekly" />-->
+<!--        </RadioGroup>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

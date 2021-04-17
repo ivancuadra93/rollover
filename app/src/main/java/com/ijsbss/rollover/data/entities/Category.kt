@@ -1,5 +1,7 @@
 package com.ijsbss.rollover.data.entities
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,7 +25,7 @@ data class Category(
         val rolloverPeriod: Byte,
 
         @ColumnInfo(name = "color")
-        val color: String,
+        val color: Int,
 
         @ColumnInfo(name = "threshold")
         val threshold: Float,
