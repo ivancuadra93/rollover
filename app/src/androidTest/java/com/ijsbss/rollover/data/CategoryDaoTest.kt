@@ -2,7 +2,6 @@ package com.ijsbss.rollover.data
 
 import android.graphics.Color
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.*
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -10,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryDao
 import com.ijsbss.rollover.data.entities.Category
+import com.ijsbss.rollover.utilities.getOrAwaitValue
 import org.hamcrest.Matchers.equalTo
 import org.junit.After
 import org.junit.Assert.assertThat
@@ -48,21 +48,21 @@ class CategoryDaoTest {
 
     @Test
     fun testGetCategories() = runBlocking {
-        categoryDao.getCategories().observeForever(Observer { categories ->
-            assertThat(categories.size, equalTo(3))
+        val categories = categoryDao.getCategories().getOrAwaitValue()
 
-            // Ensure category list is sorted by view order
-            assertThat(categories[0], equalTo(categoryA))
-            assertThat(categories[1], equalTo(categoryB))
-            assertThat(categories[2], equalTo(categoryC))
-        })
+        assertThat(categories.size, equalTo(3))
+
+        // Ensure category list is sorted by view order
+        assertThat(categories[0], equalTo(categoryA))
+        assertThat(categories[1], equalTo(categoryB))
+        assertThat(categories[2], equalTo(categoryC))
     }
 
     @Test
     fun testDeleteCategory() = runBlocking {
         categoryDao.delete(categoryB)
-        categoryDao.getCategories().observeForever(Observer { categories ->
-            assertThat(categories.size, equalTo(2))
-        })
+
+        val categories = categoryDao.getCategories().getOrAwaitValue()
+        assertThat(categories.size, equalTo(2))
     }
 }
