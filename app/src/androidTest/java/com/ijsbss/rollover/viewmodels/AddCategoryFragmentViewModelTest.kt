@@ -21,6 +21,7 @@ import org.junit.runner.RunWith
 class AddCategoryFragmentViewModelTest {
     private lateinit var db: AppDatabase
     private lateinit var viewModel: AddCategoryFragmentViewModel
+    private lateinit var repository: CategoryRepository
     private val instantTaskExecutorRule = InstantTaskExecutorRule()
     private val coroutineRule = MainCoroutineRule()
 
@@ -33,7 +34,7 @@ class AddCategoryFragmentViewModelTest {
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
-        val repository = CategoryRepository(db.categoryDao())
+        repository = CategoryRepository(db.categoryDao())
         viewModel = AddCategoryFragmentViewModel(repository)
     }
 
@@ -45,7 +46,7 @@ class AddCategoryFragmentViewModelTest {
     @Test
     fun testCategoryInsertWithCorrectValues() = coroutineRule.runBlockingTest {
         // check db for empty db
-        assertThat(viewModel.categories.getOrAwaitValue().size, equalTo(0))
+        assertThat(repository.categories.getOrAwaitValue().size, equalTo(0))
 
         // add values to bindable data to simulate input
         viewModel.inputName.value = "food"
@@ -65,7 +66,7 @@ class AddCategoryFragmentViewModelTest {
         viewModel.saveOrUpdate()
 
         // check for new category added to db
-        val vmCategories = viewModel.categories.getOrAwaitValue()
+        val vmCategories = repository.categories.getOrAwaitValue()
         assertThat(vmCategories.size, equalTo(1))
         assertThat(vmCategories[0].name, equalTo("FOOD"))
         assertThat(vmCategories[0].expectation, equalTo(200.00f))

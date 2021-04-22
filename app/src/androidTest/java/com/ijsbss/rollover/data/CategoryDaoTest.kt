@@ -60,7 +60,7 @@ class CategoryDaoTest {
 
     @Test
     fun testDeleteCategory() = runBlocking {
-        categoryDao.delete(categoryB)
+        categoryDao.delete(categoryB.id)
 
         val categories = categoryDao.getCategories().getOrAwaitValue()
         assertThat(categories.size, equalTo(2))
