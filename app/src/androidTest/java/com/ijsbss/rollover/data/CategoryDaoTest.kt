@@ -1,4 +1,4 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.data
 
 import android.graphics.Color
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
