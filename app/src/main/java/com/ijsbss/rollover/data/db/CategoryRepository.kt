@@ -13,7 +13,7 @@ class CategoryRepository(private val dao: CategoryDao) {
         dao.deleteAll()
     }
 
-    suspend fun delete(category: Category) {
-        dao.delete(category)
+    suspend fun delete(categoryID: Int) {
+        dao.delete(categoryID)
     }
 }

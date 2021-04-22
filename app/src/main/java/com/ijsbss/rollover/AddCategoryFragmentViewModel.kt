@@ -1,6 +1,5 @@
 package com.ijsbss.rollover
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
@@ -10,9 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.data.entities.Category
 import kotlinx.coroutines.launch
+import java.util.*
 
 class AddCategoryFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
-    val categories = repository.categories
 
     @Bindable
     val inputName = MutableLiveData<String>()
@@ -48,7 +47,7 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
             }
             val threshold = inputThreshold.value!!
 
-            insert(Category(0, name.toUpperCase(), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), 0, 0))
+            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), 0, 0))
 
             inputName.value = null
             inputExpectation.value = null
@@ -61,12 +60,6 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     private fun insert(category: Category){
         viewModelScope.launch {
             repository.insert(category)
-        }
-    }
-
-    private fun delete(category: Category){
-        viewModelScope.launch {
-            repository.delete(category)
         }
     }
 
