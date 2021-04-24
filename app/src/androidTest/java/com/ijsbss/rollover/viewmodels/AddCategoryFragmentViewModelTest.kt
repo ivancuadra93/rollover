@@ -1,6 +1,5 @@
 package com.ijsbss.rollover.viewmodels
 
-import android.graphics.Color
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -10,7 +9,7 @@ import com.ijsbss.rollover.MainCoroutineRule
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.runBlockingTest
-import com.ijsbss.rollover.utilities.getOrAwaitValue
+import com.ijsbss.rollover.utilities.*
 import org.hamcrest.Matchers.equalTo
 import org.junit.*
 import org.junit.Assert.assertThat
@@ -71,7 +70,15 @@ class AddCategoryFragmentViewModelTest {
         assertThat(vmCategories[0].name, equalTo("FOOD"))
         assertThat(vmCategories[0].expectation, equalTo(200.00f))
         assertThat(vmCategories[0].rolloverPeriod, equalTo(14))
-        assertThat(vmCategories[0].color, equalTo(Color.argb(255,190,33,55)))
+        assertThat(vmCategories[0].color, equalTo(RED))
         assertThat(vmCategories[0].threshold, equalTo(90.0F))
     }
+
+    // test threshold over 100% - should fail
+
+    // test rollover period limits - not more than a month?
+
+    // test delete for category
+
+    // test name capitalization for storage
 }

@@ -9,7 +9,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 /*
-* Taken Android's best practice example application.
+* Taken from Android's best practice example application.
 *
 *       https://github.com/android/sunflower
 *
