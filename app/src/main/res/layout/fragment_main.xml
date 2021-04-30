@@ -46,6 +46,8 @@
                 android:layout_width="288dp"
                 android:layout_height="54dp"
                 android:background="#A1A189"
+                android:paddingStart="60sp"
+                android:paddingEnd="10sp"
                 android:text="@string/rollover"
                 android:textAlignment="center"
                 android:textColor="#000000"

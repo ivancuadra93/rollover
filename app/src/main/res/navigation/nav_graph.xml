@@ -14,6 +14,10 @@
         <action
             android:id="@+id/action_MainFragment_to_AddCategoryFragment"
             app:destination="@id/AddCategoryFragment" />
+
+        <action
+            android:id="@+id/action_MainFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
     </fragment>
 
     <fragment
@@ -26,4 +30,30 @@
             android:id="@+id/action_AddCategoryFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/CategoryFragment"
+        android:name="com.ijsbss.rollover.MainFragment"
+        android:label="@string/category_fragment_label"
+        tools:layout="@layout/category_screen">
+
+        <action
+            android:id="@+id/action_CategoryFragment_to_AddExpenseFragment"
+            app:destination="@id/AddExpenseFragment" />
+        <action
+            android:id="@+id/action_CategoryFragment_to_MainFragment"
+            app:destination="@id/MainFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddExpenseFragment"
+        android:name="com.ijsbss.rollover.MainFragment"
+        android:label= "@string/add_expense_fragment_label"
+        tools:layout="@layout/add_expense_screen">
+
+        <action
+            android:id="@+id/action_AddExpenseFragment_to_CategoryFragment"
+            app:destination="@id/CategoryFragment" />
+    </fragment>
+
 </navigation>

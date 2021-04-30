@@ -28,7 +28,8 @@
             <LinearLayout
                 android:id="@+id/list_item_layout"
                 android:layout_width="match_parent"
-                android:layout_height="113dp">
+                android:layout_height="113dp"
+                android:clickable="true">
 
                 <TextView
                     android:id="@+id/name_text_view"
