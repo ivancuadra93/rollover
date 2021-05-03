@@ -33,9 +33,10 @@
                 <TextView
                     android:id="@+id/name_text_view"
                     android:layout_width="248dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="80dp"
                     android:layout_margin="10dp"
                     android:text="TextView"
+                    android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold" />

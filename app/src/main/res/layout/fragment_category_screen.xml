@@ -21,12 +21,14 @@
             <Button
                 android:id="@+id/category_back"
                 android:layout_width="10sp"
-                android:layout_height="match_parent"
+                android:layout_height="80dp"
                 android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#8E3939"
+                android:translationY="-10dp"
+                app:cornerRadius="0dp"
                 app:icon="@drawable/ic_back_icon"
                 app:iconSize="40dp"
-                app:iconTint="#000000" />
+                app:iconTint="#FFFAFA" />
 
             <TextView
                 android:id="@+id/category_name_view"
@@ -37,7 +39,7 @@
                 android:paddingBottom="10sp"
                 android:text="Category Name"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -49,11 +51,11 @@
                 android:id="@+id/available_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="70dp"
                 android:text="@string/available"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,7 @@
                 android:id="@+id/spent_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="70dp"
                 android:text="@string/spent"
                 android:textColor="#000000"
@@ -73,11 +75,11 @@
                 android:id="@+id/rolled_over_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="70dp"
                 android:text="@string/rolled_over"
                 android:textColor="#000000"
-                android:textSize="25sp"
+                android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spent_label" />
 
@@ -86,10 +88,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="25dp"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="30sp"
+                android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="28sp"
@@ -110,10 +112,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="25sp"
+                android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cat_spent_view" />
 
@@ -121,25 +123,25 @@
                 android:id="@+id/category_expectation_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="70dp"
                 android:text="@string/expectation"
                 android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rolled_over_view" />
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rolled_over_label" />
 
             <TextView
                 android:id="@+id/cat_expection_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="70dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="25dp"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rolled_over_label" />
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rolled_over_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -164,8 +166,9 @@
                 android:id="@+id/expense_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="357dp"
+                android:layout_marginTop="10dp"
                 tools:itemCount="3"
-                tools:listitem="@layout/list_item"/>
+                tools:listitem="@layout/list_item" />
 
         </LinearLayout>
     </LinearLayout>
