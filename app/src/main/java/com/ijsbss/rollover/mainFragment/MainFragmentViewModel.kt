@@ -1,4 +1,4 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.mainFragment
 
 import androidx.databinding.Observable
 import androidx.lifecycle.ViewModel

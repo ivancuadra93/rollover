@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="com.ijsbss.rollover.MainFragment"
+        android:name="com.ijsbss.rollover.mainFragment.MainFragment"
         android:label="@string/main_fragment_label"
         tools:layout="@layout/fragment_main">
 
@@ -16,13 +16,13 @@
             app:destination="@id/AddCategoryFragment" />
 
         <action
-            android:id="@+id/action_MainFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_MainFragment_to_CategoryScreenFragment"
+            app:destination="@id/CategoryScreenFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/AddCategoryFragment"
-        android:name="com.ijsbss.rollover.AddCategoryFragment"
+        android:name="com.ijsbss.rollover.addCategory.AddCategoryFragment"
         android:label="@string/add_category_fragment_label"
         tools:layout="@layout/fragment_add_category">
 
@@ -32,28 +32,28 @@
     </fragment>
 
     <fragment
-        android:id="@+id/CategoryFragment"
-        android:name="com.ijsbss.rollover.MainFragment"
-        android:label="@string/category_fragment_label"
-        tools:layout="@layout/category_screen">
+        android:id="@+id/CategoryScreenFragment"
+        android:name="com.ijsbss.rollover.categoryScreen.CategoryScreenFragment"
+        android:label="@string/category_screen_fragment_label"
+        tools:layout="@layout/fragment_category_screen">
 
         <action
-            android:id="@+id/action_CategoryFragment_to_AddExpenseFragment"
-            app:destination="@id/AddExpenseFragment" />
+            android:id="@+id/action_CategoryScreenFragment_to_AddExpenseScreenFragment"
+            app:destination="@id/AddExpenseScreenFragment" />
         <action
-            android:id="@+id/action_CategoryFragment_to_MainFragment"
+            android:id="@+id/action_CategoryScreenFragment_to_MainFragment"
             app:destination="@id/MainFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/AddExpenseFragment"
-        android:name="com.ijsbss.rollover.MainFragment"
-        android:label= "@string/add_expense_fragment_label"
-        tools:layout="@layout/add_expense_screen">
+        android:id="@+id/AddExpenseScreenFragment"
+        android:name="com.ijsbss.rollover.addExpense.AddExpenseFragment"
+        android:label= "@string/add_expense_screen_fragment_label"
+        tools:layout="@layout/fragment_add_expense_screen">
 
         <action
-            android:id="@+id/action_AddExpenseFragment_to_CategoryFragment"
-            app:destination="@id/CategoryFragment" />
+            android:id="@+id/action_AddExpenseScreenFragment_to_CategoryScreenFragment"
+            app:destination="@id/CategoryScreenFragment" />
     </fragment>
 
 </navigation>

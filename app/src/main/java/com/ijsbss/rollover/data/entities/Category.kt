@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Category(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "category_id")
-        val id: Int,
+        val categoryId: Int,
 
         @ColumnInfo(name = "name")
         val name: String,
@@ -28,8 +28,8 @@ data class Category(
         @ColumnInfo(name = "threshold")
         val threshold: Float,
 
-        @ColumnInfo(name = "expenses_id")
-        val expensesId: Int,
+//        @ColumnInfo(name = "expenses")
+//        val expenses: Expense,
 
         @ColumnInfo(name = "view_order")
         val viewOrder: Byte

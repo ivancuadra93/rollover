@@ -5,7 +5,7 @@
     <data>
         <variable
             name="myViewModel"
-            type="com.ijsbss.rollover.MainFragmentViewModel" />
+            type="com.ijsbss.rollover.categoryScreen.CategoryScreenFragmentViewModel" />
     </data>
 
     <LinearLayout
@@ -161,8 +161,11 @@
                 app:iconTint="#202020" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/expense_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="357dp" />
+                android:layout_height="357dp"
+                tools:itemCount="3"
+                tools:listitem="@layout/list_item"/>
 
         </LinearLayout>
     </LinearLayout>

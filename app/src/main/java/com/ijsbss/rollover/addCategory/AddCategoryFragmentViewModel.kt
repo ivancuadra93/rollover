@@ -1,4 +1,4 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.addCategory
 
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
@@ -36,7 +36,7 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
             val color = colorConverter(inputColor)
             val threshold = inputThreshold.value!!
 
-            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), 0, 0))
+            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), 0))
 
             inputName.value = null
             inputExpectation.value = null

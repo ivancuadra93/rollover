@@ -5,7 +5,7 @@
     <data>
         <variable
             name="myViewModel"
-            type="com.ijsbss.rollover.MainFragmentViewModel" />
+            type="com.ijsbss.rollover.mainFragment.MainFragmentViewModel" />
     </data>
 
     <LinearLayout

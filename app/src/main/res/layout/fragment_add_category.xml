@@ -5,13 +5,13 @@
     <data>
         <variable
             name="ViewModel"
-            type="com.ijsbss.rollover.AddCategoryFragmentViewModel" />
+            type="com.ijsbss.rollover.addCategory.AddCategoryFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AddCategoryFragment">
+        tools:context=".addCategory.AddCategoryFragment">
 
         <Button
             android:id="@+id/cancel_button"

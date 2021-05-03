@@ -1,15 +1,15 @@
 package com.ijsbss.rollover.data.entities
 
-import android.icu.util.Calendar
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "expenses")
 data class Expense(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "expense_id")
-        val id: Int,
+        val expenseId: Int,
 
         @ColumnInfo(name = "name")
         val name: String,
@@ -17,9 +17,15 @@ data class Expense(
         @ColumnInfo(name = "amount")
         val amount: Float,
 
-        @ColumnInfo(name = "account")
-        val account: Account,
+        @ColumnInfo(name = "accountOptions")
+        val accountOptions: Int,
 
-        @ColumnInfo(name = "date")
-        val date: Calendar,
+//        @ColumnInfo(name = "date")
+//        val date: Date,
+
+        @ColumnInfo(name = "view_order")
+        val viewOrder: Byte,
+
+        @ColumnInfo(name = "category_id")
+        val categoryId: Int
 )

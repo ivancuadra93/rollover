@@ -1,4 +1,4 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.mainFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +15,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentMainBinding
+import com.ijsbss.rollover.recyclerViews.MyRecyclerViewAdapter
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

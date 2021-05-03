@@ -1,18 +1,21 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.recyclerViews
 
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.ijsbss.rollover.mainFragment.MainFragmentViewModel
+import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.databinding.ListItemBinding
 
-class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel ) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -36,7 +39,7 @@ class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, p
 //    }
 
 
-   inner class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
+    inner class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
         private var itemID = 0
 
         init {
@@ -51,7 +54,8 @@ class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, p
             binding.nameTextView.text = category.name
             binding.totalSpentView.text = dollarSignTotalSpent
             binding.cardView.setCardBackgroundColor(category.color)
-            itemID = category.id
+            itemID = category.categoryId
+
         }
 
         override fun onClick(v: View?) {
@@ -64,7 +68,14 @@ class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, p
 
                 R.id.card_view -> {
                     Toast.makeText(v.context, "Inside Click", Toast.LENGTH_SHORT).show()
-                    binding.editAndDeleteLayout.visibility = GONE
+                    val bundle = bundleOf(
+                            ("categoryId" to itemID),
+                            ("categoryName" to categoriesList[adapterPosition].name),
+                            ("categoryColor" to categoriesList[adapterPosition].color),
+                            ("totalSpent" to categoriesList[adapterPosition].totalSpent),
+                            ("expectation" to categoriesList[adapterPosition].expectation)
+                    )
+                    v.findNavController().navigate(R.id.action_MainFragment_to_CategoryScreenFragment, bundle)
 
                 }
             }
