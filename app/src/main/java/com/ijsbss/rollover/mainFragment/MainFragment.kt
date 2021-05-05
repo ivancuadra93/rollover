@@ -48,21 +48,11 @@ class MainFragment : Fragment(), View.OnClickListener  {
 
         super.onViewCreated(view, savedInstanceState)
 
-        //activity?.recreate()
-
         view.findViewById<LinearLayout>(R.id.main_linear_layout).setOnClickListener(this)
-
 
         view.findViewById<Button>(R.id.add_category_button).setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment)
-            //onActivityResult( R.id.action_MainFragment_to_AddCategoryFragment)
-            //activity?.startActivityFromFragment(AddCategoryFragment(),Intent(this.context, AddCategoryFragment::class.java),0)
-            //activity?.finish()
         }
-
-        Toast.makeText(view?.context, "reached here", Toast.LENGTH_SHORT).show()
-
-        view.findViewById<LinearLayout>(R.id.main_linear_layout).setOnClickListener(this)
 
     }
 
@@ -81,8 +71,8 @@ class MainFragment : Fragment(), View.OnClickListener  {
 
 
     override fun onClick(v: View?) {
-        Toast.makeText(v?.context, binding.categoryRecyclerView.adapter?.itemCount.toString(), Toast.LENGTH_SHORT).show()
         var i = 0
+
         while(i < binding.categoryRecyclerView.adapter!!.itemCount  ) {
             binding.categoryRecyclerView[i].findViewById<LinearLayout>(R.id.edit_and_delete_layout).visibility = GONE
             i++

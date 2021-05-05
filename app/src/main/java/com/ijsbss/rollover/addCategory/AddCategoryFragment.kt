@@ -44,20 +44,17 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         view.findViewById<Button>(R.id.save_button).setOnClickListener {
             if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
                 addCategoryFragmentViewModel.inputCategory()
-                //findNavController().popBackStack()
-                //activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.action_AddCategoryFragment_to_MainFragment, )
-                findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
 
+                findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
             else{
-
+                Toast.makeText(view.context, "Please Enter All the Information", Toast.LENGTH_LONG).show()
             }
         }
 
         //cancel click event
         view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
             findNavController().popBackStack()
-            //findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
         }
     }
 

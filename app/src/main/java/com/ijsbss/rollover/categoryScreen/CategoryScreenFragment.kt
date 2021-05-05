@@ -67,7 +67,6 @@ class CategoryScreenFragment() : Fragment() {
 
         view.findViewById<Button>(R.id.category_back).setOnClickListener {
             findNavController().navigate(R.id.action_CategoryScreenFragment_to_MainFragment)
-            //findNavController().popBackStack()
         }
 
         view.findViewById<Button>(R.id.add_expense_button).setOnClickListener {

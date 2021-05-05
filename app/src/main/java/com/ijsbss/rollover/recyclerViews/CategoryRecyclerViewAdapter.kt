@@ -33,13 +33,6 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
         return categoriesList.size
     }
 
-
-    fun delete(position: Int) {
-        categoriesList.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-
     inner class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
         private var itemID = 0
 
@@ -64,13 +57,13 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
         override fun onClick(v: View?) {
             when (v?.id) {
                 R.id.delete_button -> {
-                    Toast.makeText(v.context, itemID.toString() + " " + binding.nameTextView.text, Toast.LENGTH_SHORT).show()
-                    //delete(adapterPosition)
+                    Toast.makeText(v.context, "Deleted " + binding.nameTextView.text, Toast.LENGTH_LONG).show()
+
                     mainFragmentViewModel.deleteCategory(itemID)
                 }
 
                 R.id.card_view -> {
-                    Toast.makeText(v.context, "Inside Click", Toast.LENGTH_SHORT).show()
+
                     val bundle = bundleOf(
                             ("categoryId" to itemID),
                             ("categoryName" to categoriesList[adapterPosition].name),
@@ -78,6 +71,7 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                             ("totalSpent" to categoriesList[adapterPosition].totalSpent),
                             ("expectation" to categoriesList[adapterPosition].expectation)
                     )
+
                     v.findNavController().navigate(R.id.action_MainFragment_to_CategoryScreenFragment, bundle)
 
                 }
@@ -85,7 +79,6 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
         }
 
         override fun onLongClick(v: View?): Boolean {
-            Toast.makeText(v?.context, "long click", Toast.LENGTH_SHORT).show()
             binding.editAndDeleteLayout.isVisible = true
 
             return true

@@ -1,6 +1,5 @@
 package com.ijsbss.rollover.data.Relations
 
-import androidx.lifecycle.LiveData
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.ijsbss.rollover.data.entities.Category

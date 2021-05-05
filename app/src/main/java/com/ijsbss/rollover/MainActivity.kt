@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*
         }
     }
 
-    override fun onBackPressed() {
-
-    }
+//    override fun onBackPressed() {
+//
+//    }
     /*
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using

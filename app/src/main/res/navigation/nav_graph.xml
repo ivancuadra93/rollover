@@ -28,7 +28,9 @@
 
         <action
             android:id="@+id/action_AddCategoryFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            app:destination="@id/MainFragment"
+            app:popUpTo="@id/MainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -42,7 +44,9 @@
             app:destination="@id/AddExpenseScreenFragment" />
         <action
             android:id="@+id/action_CategoryScreenFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            app:destination="@id/MainFragment"
+            app:popUpTo="@id/MainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -53,7 +57,9 @@
 
         <action
             android:id="@+id/action_AddExpenseScreenFragment_to_CategoryScreenFragment"
-            app:destination="@id/CategoryScreenFragment" />
+            app:destination="@id/CategoryScreenFragment"
+            app:popUpTo="@id/CategoryScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
