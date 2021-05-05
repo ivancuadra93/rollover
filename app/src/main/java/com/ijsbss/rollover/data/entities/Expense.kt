@@ -3,6 +3,7 @@ package com.ijsbss.rollover.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.LocalDate
 import java.util.*
 
 @Entity(tableName = "expenses")
@@ -20,8 +21,8 @@ data class Expense(
         @ColumnInfo(name = "accountOptions")
         val accountOptions: Int,
 
-//        @ColumnInfo(name = "date")
-//        val date: Date,
+        @ColumnInfo(name = "date")
+        val date: String,
 
         @ColumnInfo(name = "view_order")
         val viewOrder: Byte,

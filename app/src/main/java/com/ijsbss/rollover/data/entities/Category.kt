@@ -28,9 +28,6 @@ data class Category(
         @ColumnInfo(name = "threshold")
         val threshold: Float,
 
-//        @ColumnInfo(name = "expenses")
-//        val expenses: Expense,
-
         @ColumnInfo(name = "view_order")
         val viewOrder: Byte
 )

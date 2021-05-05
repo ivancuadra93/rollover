@@ -8,6 +8,7 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.Relations.CategoryWithExpenses
 import com.ijsbss.rollover.data.entities.Expense
 import com.ijsbss.rollover.databinding.ExpenseListItemBinding
+import java.text.DecimalFormat
 
 class ExpenseRecyclerViewAdapter(private val expensesList: MutableList<CategoryWithExpenses>, private val categoryId: Int) : RecyclerView.Adapter<ExpenseRecyclerViewAdapter.MyViewHolder>() {
 
@@ -29,10 +30,14 @@ class ExpenseRecyclerViewAdapter(private val expensesList: MutableList<CategoryW
     inner class MyViewHolder(private val binding: ExpenseListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(expense: Expense){
-            val amount = "$" + expense.amount.toString()
+
+            val decimalFormat = DecimalFormat("0.00")
+            val amountWithTwoDecimalFormat = decimalFormat.format(expense.amount)
+            val dollarSignAmount = "$$amountWithTwoDecimalFormat"
 
             binding.expenseNameView.text = expense.name
-            binding.expenseAmountView.text = amount
+            binding.expenseAmountView.text = dollarSignAmount
+            binding.dateView.text = expense.date.toString()
         }
     }
 

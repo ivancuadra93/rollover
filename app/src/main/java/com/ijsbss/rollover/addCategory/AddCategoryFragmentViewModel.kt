@@ -28,7 +28,7 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     @Bindable
     val inputThreshold = MutableLiveData<String>()
 
-    fun saveOrUpdate(){
+    fun inputCategory(){
         if(inputName.value != null && inputExpectation.value != null && inputRolloverPeriod.value != null && inputColor.value != null && inputThreshold.value != null){
             val name = inputName.value!!
             val expectation = inputExpectation.value!!

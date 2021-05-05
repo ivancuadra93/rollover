@@ -134,7 +134,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/rolled_over_label" />
 
             <TextView
-                android:id="@+id/cat_expection_view"
+                android:id="@+id/cat_expectation_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"

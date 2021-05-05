@@ -14,8 +14,9 @@ import com.ijsbss.rollover.mainFragment.MainFragmentViewModel
 import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.databinding.ListItemBinding
+import java.text.DecimalFormat
 
-class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<CategoryRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -33,10 +34,10 @@ class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, p
     }
 
 
-//    fun delete(position: Int) {
-//        categoriesList.removeAt(position)
-//        notifyItemRemoved(position)
-//    }
+    fun delete(position: Int) {
+        categoriesList.removeAt(position)
+        notifyItemRemoved(position)
+    }
 
 
     inner class MyViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener, View.OnLongClickListener {
@@ -49,7 +50,9 @@ class MyRecyclerViewAdapter(private val categoriesList: MutableList<Category>, p
         }
 
         fun bind(category: Category) {
-            val dollarSignTotalSpent = "$" + category.totalSpent.toString()
+            val decimalFormat = DecimalFormat("0.00")
+            val totalSpentWithTwoDecimalFormat = decimalFormat.format(category.totalSpent)
+            val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
 
             binding.nameTextView.text = category.name
             binding.totalSpentView.text = dollarSignTotalSpent

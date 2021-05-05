@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.db.AppDatabase
@@ -42,11 +39,11 @@ class AddExpenseFragment : Fragment(){
                 val categoryName = arguments?.getString("categoryName")
                 val categoryColor = arguments?.getInt("categoryColor")
                 val totalSpent = arguments?.getFloat("totalSpent")!!
-                val expectation = arguments?.getInt("expectation")
+                val expectation = arguments?.getFloat("expectation")
 
                 val newTotalSpent = totalSpent + addExpenseFragmentViewModel.inputAmount.value!!.toFloat()
 
-                addExpenseFragmentViewModel.saveOrUpdate(categoryId, totalSpent)
+                addExpenseFragmentViewModel.inputExpense(categoryId, totalSpent)
 
                 val bundle = bundleOf(
                         ("categoryId" to categoryId),
@@ -63,20 +60,20 @@ class AddExpenseFragment : Fragment(){
         }
 
         view.findViewById<Button>(R.id.expense_cancel_button).setOnClickListener {
-            val categoryId = arguments?.getInt("categoryId")!!
-            val categoryName = arguments?.getString("categoryName")
-            val categoryColor = arguments?.getInt("categoryColor")
-            val totalSpent = arguments?.getFloat("totalSpent")
-            val expectation = arguments?.getInt("expectation")
-            val bundle = bundleOf(
-                    ("categoryId" to categoryId),
-                    ("categoryName" to categoryName),
-                    ("categoryColor" to categoryColor),
-                    ("totalSpent" to totalSpent),
-                    ("expectation" to expectation)
-            )
-
-            findNavController().navigate(R.id.action_AddExpenseScreenFragment_to_CategoryScreenFragment, bundle)
+//            val categoryId = arguments?.getInt("categoryId")!!
+//            val categoryName = arguments?.getString("categoryName")
+//            val categoryColor = arguments?.getInt("categoryColor")
+//            val totalSpent = arguments?.getFloat("totalSpent")
+//            val expectation = arguments?.getFloat("expectation")
+//            val bundle = bundleOf(
+//                    ("categoryId" to categoryId),
+//                    ("categoryName" to categoryName),
+//                    ("categoryColor" to categoryColor),
+//                    ("totalSpent" to totalSpent),
+//                    ("expectation" to expectation)
+//            )
+            findNavController().popBackStack()
+            //findNavController().navigate(R.id.action_AddExpenseScreenFragment_to_CategoryScreenFragment, bundle)
         }
     }
 

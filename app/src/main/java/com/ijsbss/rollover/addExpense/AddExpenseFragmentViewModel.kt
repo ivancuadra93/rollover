@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ijsbss.rollover.data.db.ExpenseRepository
 import com.ijsbss.rollover.data.entities.Expense
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 class AddExpenseFragmentViewModel(private val repository: ExpenseRepository) : ViewModel(), Observable{
 
@@ -17,14 +18,14 @@ class AddExpenseFragmentViewModel(private val repository: ExpenseRepository) : V
     @Bindable
     val inputAmount = MutableLiveData<String>()
 
-    fun saveOrUpdate(categoryId: Int, totalSpent: Float){
+    fun inputExpense(categoryId: Int, totalSpent: Float){
         if(inputName.value != null && inputAmount.value != null){
             val name = inputName.value!!.toUpperCase()
             val amount = inputAmount.value!!.toFloat()
 
             val newTotalSpent: Float = amount + totalSpent
 
-            insert( Expense(0,name, amount, 0, 0, categoryId  ))
+            insert( Expense(0,name, amount, 0, LocalDate.now().toString(),0,  categoryId  ))
             update(categoryId, newTotalSpent)
 
             inputName.value = null

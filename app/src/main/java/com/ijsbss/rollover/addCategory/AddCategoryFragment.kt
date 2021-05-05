@@ -12,7 +12,6 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentAddCategoryBinding
-//import kotlinx.android.synthetic.main.fragment_add_category.view.*
 
 
 /**
@@ -37,46 +36,29 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//            fun onRadioButtonClicked(view: View){
-//                if (view is RadioButton){
-//                    val checked = view.isChecked
-//
-//                    when(view.getId()){
-//                        R.id.daily_button -> if (checked){
-//                            addCategoryFragmentViewModel.inputRolloverPeriod.value = (addCategoryFragmentViewModel.inputRolloverPeriod.value?.toByte()?.times(7)).toString()
-//
-//                        }
-//                        R.id.weekly_button -> if (checked){
-//                            addCategoryFragmentViewModel.inputRolloverPeriod.value = (addCategoryFragmentViewModel.inputRolloverPeriod.value?.toByte()?.times(4)).toString()
-//
-//                        }
-//                        R.id.biweekly_button -> if(checked){
-//
-//                        }
-//                    }
-//                }
-//            }
+        //color drop down click event
+        val spinner : Spinner = view.findViewById(R.id.color_picker)
+        spinner.onItemSelectedListener = this
 
-            //color drop down click event
-            val spinner : Spinner = view.findViewById(R.id.color_picker)
-            spinner.onItemSelectedListener = this
-
-            //save click event
-            view.findViewById<Button>(R.id.save_button).setOnClickListener {
-                if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
-                    addCategoryFragmentViewModel.saveOrUpdate()
-                    findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
-                }
-                else{
-
-                }
-            }
-
-            //cancel click event
-            view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
+        //save click event
+        view.findViewById<Button>(R.id.save_button).setOnClickListener {
+            if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
+                addCategoryFragmentViewModel.inputCategory()
+                //findNavController().popBackStack()
+                //activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.action_AddCategoryFragment_to_MainFragment, )
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
-            }
 
+            }
+            else{
+
+            }
+        }
+
+        //cancel click event
+        view.findViewById<Button>(R.id.cancel_button).setOnClickListener {
+            findNavController().popBackStack()
+            //findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
+        }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
