@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -40,6 +41,8 @@ class AddExpenseFragment : Fragment(){
                 val categoryColor = arguments?.getInt("categoryColor")
                 val totalSpent = arguments?.getFloat("totalSpent")!!
                 val expectation = arguments?.getFloat("expectation")
+                val rolloverPeriod = arguments?.getByte("rolloverPeriod")
+                val date = arguments?.getString("date")
 
                 val newTotalSpent = totalSpent + addExpenseFragmentViewModel.inputAmount.value!!.toFloat()
 
@@ -50,12 +53,15 @@ class AddExpenseFragment : Fragment(){
                         ("categoryName" to categoryName),
                         ("categoryColor" to categoryColor),
                         ("totalSpent" to newTotalSpent),
-                        ("expectation" to expectation)
+                        ("expectation" to expectation),
+                        ("rolloverPeriod" to rolloverPeriod),
+                        ("date" to date)
+
                 )
                 findNavController().navigate(R.id.action_AddExpenseScreenFragment_to_CategoryScreenFragment, bundle)
             }
             else{
-
+                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_LONG).show()
             }
         }
 

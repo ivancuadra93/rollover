@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,9 @@ import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentCategoryScreenBinding
 import java.text.DecimalFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class CategoryScreenFragment() : Fragment() {
     private lateinit var categoryScreenFragmentViewModel: CategoryScreenFragmentViewModel
@@ -35,27 +38,47 @@ class CategoryScreenFragment() : Fragment() {
         binding.lifecycleOwner = this
 
         val decimalFormat = DecimalFormat("0.00")
-
-        val availableWithTwoDecimalFormat = decimalFormat.format(arguments?.getFloat("expectation")?.minus(arguments?.getFloat("totalSpent")!!))
-        val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
-
-
-        val totalSpentWithTwoDecimalFormat = decimalFormat.format(arguments?.getFloat("totalSpent"))
-        val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
-
-        val expectationWithTwoDecimalFormat = decimalFormat.format(arguments?.getFloat("expectation"))
-        val dollarSignExpectation = "$$expectationWithTwoDecimalFormat"
+        val categoryId = arguments?.getInt("categoryId")!!
 
         val categoryName = arguments?.getString("categoryName")
+        val expectation = arguments?.getFloat("expectation")
+        val totalSpent : Float //= arguments?.getFloat("totalSpent")!!
         val categoryColor = arguments?.getInt("categoryColor")
+        val rolloverPeriod = arguments?.getByte("rolloverPeriod")!!
+        val date = arguments?.getString("date")
+
+        val expectationWithTwoDecimalFormat = decimalFormat.format(expectation)
+        val dollarSignExpectation = "$$expectationWithTwoDecimalFormat"
+
+        val numberOfDays = ((ChronoUnit.DAYS.between(LocalDate.parse(date, DateTimeFormatter.ISO_DATE), LocalDate.now() )).rem(rolloverPeriod))
 
 
-        binding.catAvailableView.text = dollarSignAvailable
+        totalSpent = if(numberOfDays.toInt() == 0 && (LocalDate.parse(date, DateTimeFormatter.ISO_DATE) != LocalDate.now()) ) {
+            categoryScreenFragmentViewModel.updateTotalSpentToZero(categoryId)
+        } else{
+            arguments?.getFloat("totalSpent")!!
+        }
+
+        val totalSpentWithTwoDecimalFormat = decimalFormat.format(totalSpent)
+        val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
+
+        val available = (expectation?.minus(totalSpent))?.div(rolloverPeriod.minus(numberOfDays))
+
+        val availableWithTwoDecimalFormat = decimalFormat.format(available)
+        val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
+
+        val rolledOverWithTwoDecimalFormat =  decimalFormat.format( (available)?.minus(expectation.div(rolloverPeriod)) )
+        val dollarSignRolledOver = "$$rolledOverWithTwoDecimalFormat"
+
         binding.categoryNameView.text = categoryName
-        binding.categoryNameView.setBackgroundColor(categoryColor!!)
+        binding.categoryBack.setBackgroundColor(categoryColor!!)
+        binding.categoryNameView.setBackgroundColor(categoryColor)
+        binding.catAvailableView.text = dollarSignAvailable
         binding.catSpentView.text = dollarSignTotalSpent
+        binding.rolledOverView.text = dollarSignRolledOver
         binding.catExpectationView.text = dollarSignExpectation
-        binding.categoryBack.setBackgroundColor(categoryColor)
+
+        Toast.makeText(binding.root.context, numberOfDays.toString(), Toast.LENGTH_LONG).show()
 
         initRecyclerView()
 
@@ -75,12 +98,17 @@ class CategoryScreenFragment() : Fragment() {
             val categoryColor = arguments?.getInt("categoryColor")
             val totalSpent = arguments?.getFloat("totalSpent")
             val expectation = arguments?.getFloat("expectation")
+            val rolloverPeriod = arguments?.getByte("rolloverPeriod")
+            val date = arguments?.getString("date")
+
             val bundle = bundleOf(
                     ("categoryId" to categoryId),
                     ("categoryName" to categoryName),
                     ("categoryColor" to categoryColor),
                     ("totalSpent" to totalSpent),
-                    ("expectation" to expectation)
+                    ("expectation" to expectation),
+                    ("rolloverPeriod" to rolloverPeriod),
+                    ("date" to date)
             )
 
             findNavController().navigate(R.id.action_CategoryScreenFragment_to_AddExpenseScreenFragment, bundle)
@@ -98,6 +126,7 @@ class CategoryScreenFragment() : Fragment() {
             Log.i("MYTAG", it.toString())
             binding.expenseRecyclerView.adapter = ExpenseRecyclerViewAdapter(it, categoryId)
         })
+
     }
 
     override fun onDestroyView() {

@@ -41,7 +41,7 @@ class AddExpenseFragmentViewModel(private val repository: ExpenseRepository) : V
 
     private fun update(categoryId: Int, newTotalSpent: Float){
         viewModelScope.launch {
-            repository.update(categoryId, newTotalSpent)
+            repository.updateTotalSpent(categoryId, newTotalSpent)
         }
     }
 

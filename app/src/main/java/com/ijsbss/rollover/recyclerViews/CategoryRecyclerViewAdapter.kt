@@ -15,6 +15,9 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.databinding.ListItemBinding
 import java.text.DecimalFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
 
 class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<CategoryRecyclerViewAdapter.MyViewHolder>() {
 
@@ -27,6 +30,7 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(categoriesList[position])
+
     }
 
     override fun getItemCount(): Int {
@@ -69,7 +73,9 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                             ("categoryName" to categoriesList[adapterPosition].name),
                             ("categoryColor" to categoriesList[adapterPosition].color),
                             ("totalSpent" to categoriesList[adapterPosition].totalSpent),
-                            ("expectation" to categoriesList[adapterPosition].expectation)
+                            ("expectation" to categoriesList[adapterPosition].expectation),
+                            ("rolloverPeriod" to categoriesList[adapterPosition].rolloverPeriod),
+                            ("date" to categoriesList[adapterPosition].date)
                     )
 
                     v.findNavController().navigate(R.id.action_MainFragment_to_CategoryScreenFragment, bundle)

@@ -14,7 +14,7 @@ interface ExpenseDao {
     suspend fun insert(expense: Expense)
 
     @Query("UPDATE CATEGORIES SET total_spent =:amount WHERE category_id = :categoryId")
-    suspend fun update(categoryId: Int, amount: Float)
+    suspend fun updateTotalSpent(categoryId: Int, amount: Float)
 
     @Query("DELETE FROM expenses")
     suspend fun deleteAll()

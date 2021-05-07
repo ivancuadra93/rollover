@@ -8,7 +8,6 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -31,6 +30,18 @@ class MainFragment : Fragment(), View.OnClickListener  {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
+        val repository = CategoryRepository(dao)
+        val factory = MainFragmentViewModelFactory(repository)
+        mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
+
+//        mainFragmentViewModel.updateTotalSpentToZero(this)
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
@@ -39,7 +50,15 @@ class MainFragment : Fragment(), View.OnClickListener  {
         mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
         binding.myViewModel = mainFragmentViewModel
         binding.lifecycleOwner = this
+
         initRecyclerView()
+
+//        var checked = true
+
+//        if(checked) {
+//            mainFragmentViewModel.updateTotalSpentToZero(binding.lifecycleOwner as MainFragment)
+//        }
+//        checked = false
 
         return binding.root
     }
@@ -53,7 +72,6 @@ class MainFragment : Fragment(), View.OnClickListener  {
         view.findViewById<Button>(R.id.add_category_button).setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment)
         }
-
     }
 
 

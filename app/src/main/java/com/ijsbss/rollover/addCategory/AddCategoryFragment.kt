@@ -48,7 +48,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
             else{
-                Toast.makeText(view.context, "Please Enter All the Information", Toast.LENGTH_LONG).show()
+                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_LONG).show()
             }
         }
 

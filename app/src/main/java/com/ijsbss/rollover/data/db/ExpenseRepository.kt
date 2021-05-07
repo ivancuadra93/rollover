@@ -10,8 +10,8 @@ class ExpenseRepository(private val dao: ExpenseDao) {
         dao.insert(expense)
     }
 
-    suspend fun update(categoryId: Int, amount: Float){
-        dao.update(categoryId, amount)
+    suspend fun updateTotalSpent(categoryId: Int, amount: Float){
+        dao.updateTotalSpent(categoryId, amount)
     }
 
     suspend fun deleteAll(){
