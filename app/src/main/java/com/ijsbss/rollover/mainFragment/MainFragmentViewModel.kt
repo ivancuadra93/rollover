@@ -1,10 +1,14 @@
 package com.ijsbss.rollover.mainFragment
 
+import android.content.Context
+import android.widget.Toast
 import androidx.databinding.Observable
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ijsbss.rollover.data.db.CategoryRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -23,19 +27,20 @@ class MainFragmentViewModel(private val repository: CategoryRepository) : ViewMo
         }
     }
 
-    fun updateTotalSpentToZero(mainFragment: MainFragment) {
-        categories.observe(mainFragment.viewLifecycleOwner, {
+    fun updateTotalSpentToZero(mainFragment: LifecycleOwner, context: Context?){
+        update(mainFragment, context)
+    }
+
+    private fun update(mainFragment: LifecycleOwner, context: Context?) {
+        categories.observe(mainFragment, {
             viewModelScope.launch {
                 var i = 0
                 val indices = it.size
 
                 while(i < indices) {
 
-                    it[i]
-
-                    val numberOfDays = ((ChronoUnit.DAYS.between(LocalDate.parse(it[i].date, DateTimeFormatter.ISO_DATE), LocalDate.now() )).rem(it[i].rolloverPeriod!!))
-
-                    if(numberOfDays.toInt() == 0) {
+                    val numberOfDays = ( (ChronoUnit.DAYS.between(LocalDate.parse(it[i].date, DateTimeFormatter.ISO_DATE), LocalDate.now() )).rem(it[i].rolloverPeriod) )
+                    if( (numberOfDays.toInt() == 0) && ( LocalDate.parse(it[i].date, DateTimeFormatter.ISO_DATE) != LocalDate.now()) && (it[i].totalSpent != 0.0F) ) {
                         repository.updateTotalSpentToZero(it[i].categoryId)
                     }
 

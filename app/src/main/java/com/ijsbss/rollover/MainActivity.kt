@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*/ {
 
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*
     }
 
 //    override fun onBackPressed() {
-//
+//        // do nothing
 //    }
     /*
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {

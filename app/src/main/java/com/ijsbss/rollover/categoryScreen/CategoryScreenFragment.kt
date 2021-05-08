@@ -38,11 +38,10 @@ class CategoryScreenFragment() : Fragment() {
         binding.lifecycleOwner = this
 
         val decimalFormat = DecimalFormat("0.00")
-        val categoryId = arguments?.getInt("categoryId")!!
 
         val categoryName = arguments?.getString("categoryName")
         val expectation = arguments?.getFloat("expectation")
-        val totalSpent : Float //= arguments?.getFloat("totalSpent")!!
+        val totalSpent = arguments?.getFloat("totalSpent")!!
         val categoryColor = arguments?.getInt("categoryColor")
         val rolloverPeriod = arguments?.getByte("rolloverPeriod")!!
         val date = arguments?.getString("date")
@@ -52,22 +51,20 @@ class CategoryScreenFragment() : Fragment() {
 
         val numberOfDays = ((ChronoUnit.DAYS.between(LocalDate.parse(date, DateTimeFormatter.ISO_DATE), LocalDate.now() )).rem(rolloverPeriod))
 
-
-        totalSpent = if(numberOfDays.toInt() == 0 && (LocalDate.parse(date, DateTimeFormatter.ISO_DATE) != LocalDate.now()) ) {
-            categoryScreenFragmentViewModel.updateTotalSpentToZero(categoryId)
-        } else{
-            arguments?.getFloat("totalSpent")!!
-        }
-
         val totalSpentWithTwoDecimalFormat = decimalFormat.format(totalSpent)
         val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
 
-        val available = (expectation?.minus(totalSpent))?.div(rolloverPeriod.minus(numberOfDays))
-
+        val baseAvailable = (expectation?.div(rolloverPeriod))
+        val available = baseAvailable?.plus(baseAvailable.times(numberOfDays))?.minus(totalSpent)
         val availableWithTwoDecimalFormat = decimalFormat.format(available)
         val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
 
-        val rolledOverWithTwoDecimalFormat =  decimalFormat.format( (available)?.minus(expectation.div(rolloverPeriod)) )
+        val rolledOverWithTwoDecimalFormat = if(numberOfDays.toInt() == 0) {
+            decimalFormat.format(0.00F)
+        } else{
+            decimalFormat.format(baseAvailable?.times(numberOfDays)?.minus(totalSpent))
+        }
+
         val dollarSignRolledOver = "$$rolledOverWithTwoDecimalFormat"
 
         binding.categoryNameView.text = categoryName
@@ -77,8 +74,6 @@ class CategoryScreenFragment() : Fragment() {
         binding.catSpentView.text = dollarSignTotalSpent
         binding.rolledOverView.text = dollarSignRolledOver
         binding.catExpectationView.text = dollarSignExpectation
-
-        Toast.makeText(binding.root.context, numberOfDays.toString(), Toast.LENGTH_LONG).show()
 
         initRecyclerView()
 
