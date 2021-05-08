@@ -21,6 +21,8 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var addCategoryFragmentViewModel: AddCategoryFragmentViewModel
     private var _binding: FragmentAddCategoryBinding? = null
     private val binding get() = _binding!!
+    private var updating: Boolean = false
+    private var categoryId: Int = 0
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
@@ -30,6 +32,18 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.viewModel = addCategoryFragmentViewModel
         binding.lifecycleOwner = this
         // Inflate the layout for this fragment
+
+        if (arguments != null) {
+            val categoryName = arguments?.getString("categoryName")
+            addCategoryFragmentViewModel.inputName.value = categoryName
+            addCategoryFragmentViewModel.inputExpectation.value = arguments?.getFloat("expectation").toString()
+            addCategoryFragmentViewModel.inputColor.value = arguments?.getInt("categoryColor").toString() // fix
+            addCategoryFragmentViewModel.inputRolloverPeriod.value = arguments?.getByte("rollover").toString()
+            addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
+            categoryId = arguments?.getInt("categoryID")!!
+            updating = true
+        }
+
         return binding.root
     }
 
@@ -43,7 +57,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //save click event
         view.findViewById<Button>(R.id.save_button).setOnClickListener {
             if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
-                addCategoryFragmentViewModel.inputCategory()
+                addCategoryFragmentViewModel.inputCategory(updating, categoryId)
 
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }

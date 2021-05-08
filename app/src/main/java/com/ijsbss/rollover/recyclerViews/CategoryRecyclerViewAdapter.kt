@@ -42,6 +42,7 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
 
         init {
             binding.root.findViewById<Button>(R.id.delete_button).setOnClickListener(this)
+            binding.root.findViewById<Button>(R.id.edit_button).setOnClickListener(this)
             binding.root.findViewById<androidx.cardview.widget.CardView>(R.id.card_view).setOnClickListener(this)
             binding.root.findViewById<androidx.cardview.widget.CardView>(R.id.card_view).setOnLongClickListener(this)
         }
@@ -64,6 +65,21 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                     Toast.makeText(v.context, "Deleted " + binding.nameTextView.text, Toast.LENGTH_LONG).show()
 
                     mainFragmentViewModel.deleteCategory(itemID)
+                }
+
+                R.id.edit_button -> {
+                    Toast.makeText(v.context, itemID.toString() + " " + binding.nameTextView.text, Toast.LENGTH_SHORT).show()
+                    val bundle = bundleOf(
+                        ("categoryId" to itemID),
+                        ("categoryName" to categoriesList[adapterPosition].name),
+                        ("categoryColor" to categoriesList[adapterPosition].color),
+                        ("totalSpent" to categoriesList[adapterPosition].totalSpent),
+                        ("rollover" to categoriesList[adapterPosition].rolloverPeriod),
+                        ("threshold" to categoriesList[adapterPosition].threshold),
+                        ("expectation" to categoriesList[adapterPosition].expectation)
+                    )
+
+                    v.findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment, bundle)
                 }
 
                 R.id.card_view -> {
