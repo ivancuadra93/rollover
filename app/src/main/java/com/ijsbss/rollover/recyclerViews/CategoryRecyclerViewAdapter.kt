@@ -64,7 +64,7 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                 R.id.delete_button -> {
                     Toast.makeText(v.context, "Deleted " + binding.nameTextView.text, Toast.LENGTH_LONG).show()
 
-                    mainFragmentViewModel.deleteCategory(itemID)
+                    mainFragmentViewModel.deleteCategoryAndExpense(itemID)
                 }
 
                 R.id.edit_button -> {
@@ -72,11 +72,13 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                     val bundle = bundleOf(
                         ("categoryId" to itemID),
                         ("categoryName" to categoriesList[adapterPosition].name),
-                        ("categoryColor" to categoriesList[adapterPosition].color),
+                        ("expectation" to categoriesList[adapterPosition].expectation),
                         ("totalSpent" to categoriesList[adapterPosition].totalSpent),
                         ("rollover" to categoriesList[adapterPosition].rolloverPeriod),
+                        ("categoryColor" to categoriesList[adapterPosition].color),
                         ("threshold" to categoriesList[adapterPosition].threshold),
-                        ("expectation" to categoriesList[adapterPosition].expectation)
+                        ("date" to categoriesList[adapterPosition].date)
+
                     )
 
                     v.findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment, bundle)

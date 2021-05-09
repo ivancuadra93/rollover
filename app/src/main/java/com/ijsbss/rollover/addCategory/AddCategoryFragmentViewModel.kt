@@ -1,6 +1,5 @@
 package com.ijsbss.rollover.addCategory
 
-import android.widget.Toast
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.data.entities.Category
-import com.ijsbss.rollover.mainFragment.MainFragmentViewModel
 import com.ijsbss.rollover.utilities.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -31,7 +29,7 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     @Bindable
     val inputThreshold = MutableLiveData<String>()
 
-    fun inputCategory(updating: Boolean, categoryId: Int){
+    fun inputCategory(updating: Boolean, categoryId: Int, totalSpent: Float, date: String){
         if(inputName.value != null && inputExpectation.value != null && inputRolloverPeriod.value != null && inputColor.value != null && inputThreshold.value != null){
             val name = inputName.value!!
             val expectation = inputExpectation.value!!
@@ -39,12 +37,15 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
             val color = colorConverter(inputColor)
             val threshold = inputThreshold.value!!
 
-            if (updating) {
-                delete(categoryId)
-            }
 
-            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(),
-                LocalDate.now().toString(), 0))
+            if (updating) {
+                insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), totalSpent, rolloverPeriod.toByte(), color, threshold.toFloat(), date, 0))
+                delete(categoryId)
+                updateCategoryId(categoryId)
+            }
+            else{
+                insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), LocalDate.now().toString(), 0))
+            }
 
             inputName.value = null
             inputExpectation.value = null
@@ -74,9 +75,15 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
         }
     }
 
-    fun delete(categoryId: Int){
+    private fun delete(categoryId: Int){
         viewModelScope.launch {
-            repository.delete(categoryId)
+            repository.deleteCategoryOnly(categoryId)
+        }
+    }
+
+    private fun updateCategoryId(categoryId: Int){
+        viewModelScope.launch {
+            repository.updateCategoryId(categoryId)
         }
     }
 

@@ -17,6 +17,10 @@ class CategoryRepository(private val dao: CategoryDao) {
         dao.updateTotalSpentToZero(categoryId, 0.0F)
     }
 
+    suspend fun updateCategoryId(categoryId: Int){
+        dao.updateCategoryId(categoryId)
+    }
+
     suspend fun insert(category: Category){
         dao.insert(category)
     }
@@ -25,8 +29,12 @@ class CategoryRepository(private val dao: CategoryDao) {
         dao.deleteAll()
     }
 
-    suspend fun delete(categoryId: Int) {
-        dao.delete(categoryId)
+    suspend fun deleteCategoryAndExpense(categoryId: Int) {
+        dao.deleteCategory(categoryId)
         dao.deleteExpense(categoryId)
+    }
+
+    suspend fun deleteCategoryOnly(categoryId: Int){
+        dao.deleteCategory(categoryId)
     }
 }

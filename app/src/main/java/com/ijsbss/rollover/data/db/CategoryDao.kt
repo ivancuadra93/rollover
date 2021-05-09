@@ -26,11 +26,14 @@ interface CategoryDao {
     @Query("UPDATE CATEGORIES SET total_spent =:amount WHERE category_id = :categoryId")
     suspend fun updateTotalSpentToZero(categoryId: Int, amount: Float)
 
+    @Query("UPDATE CATEGORIES SET category_id = :categoryId WHERE category_id = (SELECT MAX(category_id) FROM CATEGORIES)")
+    suspend fun updateCategoryId(categoryId: Int)
+
     @Query("DELETE FROM categories")
     suspend fun deleteAll()
 
     @Query("DELETE FROM categories WHERE category_id LIKE :categoryID")
-    suspend fun delete(categoryID: Int)
+    suspend fun deleteCategory(categoryID: Int)
 
     @Query("DELETE FROM expenses WHERE category_id LIKE :categoryID")
     suspend fun deleteExpense(categoryID: Int)

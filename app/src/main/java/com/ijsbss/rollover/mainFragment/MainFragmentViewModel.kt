@@ -17,13 +17,13 @@ class MainFragmentViewModel(private val repository: CategoryRepository) : ViewMo
 
     val categories = repository.categories
 
-    fun deleteCategory(categoryID: Int){
+    fun deleteCategoryAndExpense(categoryID: Int){
         delete(categoryID)
     }
 
     private fun delete(categoryID: Int){
         viewModelScope.launch {
-            repository.delete(categoryID)
+            repository.deleteCategoryAndExpense(categoryID)
         }
     }
 

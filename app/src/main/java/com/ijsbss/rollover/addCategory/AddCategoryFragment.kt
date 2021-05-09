@@ -23,6 +23,8 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private val binding get() = _binding!!
     private var updating: Boolean = false
     private var categoryId: Int = 0
+    private var totalSpent: Float = 0.0F
+    private var date: String = ""
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
@@ -34,13 +36,14 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // Inflate the layout for this fragment
 
         if (arguments != null) {
-            val categoryName = arguments?.getString("categoryName")
-            addCategoryFragmentViewModel.inputName.value = categoryName
-            addCategoryFragmentViewModel.inputExpectation.value = arguments?.getFloat("expectation").toString()
-            addCategoryFragmentViewModel.inputColor.value = arguments?.getInt("categoryColor").toString() // fix
-            addCategoryFragmentViewModel.inputRolloverPeriod.value = arguments?.getByte("rollover").toString()
-            addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
             categoryId = arguments?.getInt("categoryId")!!
+            addCategoryFragmentViewModel.inputName.value = arguments?.getString("categoryName")
+            addCategoryFragmentViewModel.inputExpectation.value = arguments?.getFloat("expectation").toString()
+            totalSpent = arguments?.getFloat("totalSpent")!!
+            addCategoryFragmentViewModel.inputRolloverPeriod.value = arguments?.getByte("rollover").toString()
+            addCategoryFragmentViewModel.inputColor.value = arguments?.getInt("categoryColor").toString() // fix
+            addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
+            date = arguments?.getString("date")!!
             updating = true
         }
 
@@ -57,7 +60,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //save click event
         view.findViewById<Button>(R.id.save_button).setOnClickListener {
             if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
-                addCategoryFragmentViewModel.inputCategory(updating, categoryId)
+                addCategoryFragmentViewModel.inputCategory(updating, categoryId, totalSpent, date)
 
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
