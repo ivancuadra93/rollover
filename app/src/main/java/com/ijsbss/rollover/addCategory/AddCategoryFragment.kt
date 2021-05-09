@@ -40,7 +40,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             addCategoryFragmentViewModel.inputColor.value = arguments?.getInt("categoryColor").toString() // fix
             addCategoryFragmentViewModel.inputRolloverPeriod.value = arguments?.getByte("rollover").toString()
             addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
-            categoryId = arguments?.getInt("categoryID")!!
+            categoryId = arguments?.getInt("categoryId")!!
             updating = true
         }
 
