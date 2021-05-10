@@ -65,7 +65,6 @@ class CategoryScreenFragment : Fragment() {
         var available = baseAvailable?.plus(baseAvailable.times(numberOfDays))?.minus(totalSpent)
         if(available!! < 0.00F){
             binding.catAvailableView.setTextColor(RED)
-            available = abs(available)
         }
         val availableWithTwoDecimalFormat = decimalFormat.format(available)
         val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
