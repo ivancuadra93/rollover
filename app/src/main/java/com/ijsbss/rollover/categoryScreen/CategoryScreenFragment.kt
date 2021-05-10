@@ -17,10 +17,12 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentCategoryScreenBinding
+import com.ijsbss.rollover.utilities.RED
 import java.text.DecimalFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import kotlin.math.abs
 
 class CategoryScreenFragment : Fragment() {
     private lateinit var categoryScreenFragmentViewModel: CategoryScreenFragmentViewModel
@@ -36,8 +38,10 @@ class CategoryScreenFragment : Fragment() {
         binding.myViewModel = categoryScreenFragmentViewModel
         binding.lifecycleOwner = this
 
+        // decimal formatting
         val decimalFormat = DecimalFormat("0.00")
 
+        // base arguments
         val categoryName = arguments?.getString("categoryName")
         val expectation = arguments?.getFloat("expectation")
         val totalSpent = arguments?.getFloat("totalSpent")!!
@@ -45,27 +49,36 @@ class CategoryScreenFragment : Fragment() {
         val rolloverPeriod = arguments?.getByte("rolloverPeriod")!!
         val date = arguments?.getString("date")
 
+        //expectation set up
         val expectationWithTwoDecimalFormat = decimalFormat.format(expectation)
         val dollarSignExpectation = "$$expectationWithTwoDecimalFormat"
 
+        //number of days
         val numberOfDays = ((ChronoUnit.DAYS.between(LocalDate.parse(date, DateTimeFormatter.ISO_DATE), LocalDate.now() )).rem(rolloverPeriod))
 
+        //total spent set up
         val totalSpentWithTwoDecimalFormat = decimalFormat.format(totalSpent)
         val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
 
+        //available set up
         val baseAvailable = expectation?.div(rolloverPeriod)
-        val available = baseAvailable?.plus(baseAvailable.times(numberOfDays))?.minus(totalSpent)
+        var available = baseAvailable?.plus(baseAvailable.times(numberOfDays))?.minus(totalSpent)
+        if(available!! < 0.00F){
+            binding.catAvailableView.setTextColor(RED)
+            available = abs(available)
+        }
         val availableWithTwoDecimalFormat = decimalFormat.format(available)
         val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
 
-        val rolledOverWithTwoDecimalFormat = if(numberOfDays.toInt() == 0) {
+        //rolled over set up
+        val rolledOverWithTwoDecimalFormat = if( (numberOfDays.toInt() == 0) || (baseAvailable?.times(numberOfDays)?.minus(totalSpent)!! <  0.00F) ) {
             decimalFormat.format(0.00F)
         } else{
-            decimalFormat.format(baseAvailable?.times(numberOfDays)?.minus(totalSpent))
+            decimalFormat.format(baseAvailable.times(numberOfDays).minus(totalSpent))
         }
-
         val dollarSignRolledOver = "$$rolledOverWithTwoDecimalFormat"
 
+        //binding to view
         binding.categoryNameView.text = categoryName
         binding.categoryBack.setBackgroundColor(categoryColor!!)
         binding.categoryNameView.setBackgroundColor(categoryColor)
