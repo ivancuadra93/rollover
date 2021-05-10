@@ -45,6 +45,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
             addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
             date = arguments?.getString("date")!!
             updating = true
+            addCategoryFragmentViewModel.headerText.value = "Edit Category"
         }
 
         return binding.root
@@ -65,7 +66,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
             else{
-                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_LONG).show()
+                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -87,5 +88,4 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onDestroyView()
         _binding = null
     }
-
 }

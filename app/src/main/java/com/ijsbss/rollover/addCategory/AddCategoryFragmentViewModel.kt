@@ -15,6 +15,9 @@ import java.util.*
 class AddCategoryFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
 
     @Bindable
+    val headerText = MutableLiveData<String>()
+
+    @Bindable
     val inputName = MutableLiveData<String>()
 
     @Bindable
@@ -28,6 +31,10 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
 
     @Bindable
     val inputThreshold = MutableLiveData<String>()
+
+    init {
+        headerText.value = "Add Category"
+    }
 
     fun inputCategory(updating: Boolean, categoryId: Int, totalSpent: Float, date: String){
         if(inputName.value != null && inputExpectation.value != null && inputRolloverPeriod.value != null && inputColor.value != null && inputThreshold.value != null){
@@ -59,7 +66,6 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
         return when(color.value){
             "Red" -> RED
             "Orange" -> ORANGE
-            "Yellow" -> YELLOW
             "Green" -> GREEN
             "Blue" -> BLUE
             "Purple" -> PURPLE

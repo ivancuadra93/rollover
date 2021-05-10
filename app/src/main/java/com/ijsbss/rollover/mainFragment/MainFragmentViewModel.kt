@@ -1,14 +1,11 @@
 package com.ijsbss.rollover.mainFragment
 
-import android.content.Context
-import android.widget.Toast
 import androidx.databinding.Observable
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ijsbss.rollover.data.db.CategoryRepository
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -27,11 +24,11 @@ class MainFragmentViewModel(private val repository: CategoryRepository) : ViewMo
         }
     }
 
-    fun updateTotalSpentToZero(mainFragment: LifecycleOwner, context: Context?){
-        update(mainFragment, context)
+    fun updateTotalSpentToZero(mainFragment: LifecycleOwner){
+        update(mainFragment)
     }
 
-    private fun update(mainFragment: LifecycleOwner, context: Context?) {
+    private fun update(mainFragment: LifecycleOwner) {
         categories.observe(mainFragment, {
             viewModelScope.launch {
                 var i = 0

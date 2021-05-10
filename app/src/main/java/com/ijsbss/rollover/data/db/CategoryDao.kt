@@ -2,10 +2,8 @@ package com.ijsbss.rollover.data.db
 
 import com.ijsbss.rollover.data.entities.Category
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
-import com.ijsbss.rollover.data.Relations.CategoryWithExpenses
-import com.ijsbss.rollover.data.entities.Expense
+import com.ijsbss.rollover.data.relations.CategoryWithExpenses
 
 @Dao
 interface CategoryDao {

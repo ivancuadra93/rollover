@@ -8,7 +8,6 @@ import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,9 +19,6 @@ import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentMainBinding
 import com.ijsbss.rollover.recyclerViews.CategoryRecyclerViewAdapter
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 
 /**
@@ -42,7 +38,7 @@ class MainFragment : Fragment(), View.OnClickListener  {
         val factory = MainFragmentViewModelFactory(repository)
         mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
 
-        mainFragmentViewModel.updateTotalSpentToZero(this, this.context)
+        mainFragmentViewModel.updateTotalSpentToZero(this)
 
     }
 

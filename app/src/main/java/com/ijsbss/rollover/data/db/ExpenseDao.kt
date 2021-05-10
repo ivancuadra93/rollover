@@ -3,7 +3,6 @@ package com.ijsbss.rollover.data.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.ijsbss.rollover.data.entities.Expense
-import com.ijsbss.rollover.data.entities.Category
 
 @Dao
 interface ExpenseDao {

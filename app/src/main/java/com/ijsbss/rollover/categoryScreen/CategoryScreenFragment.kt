@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -23,7 +22,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
-class CategoryScreenFragment() : Fragment() {
+class CategoryScreenFragment : Fragment() {
     private lateinit var categoryScreenFragmentViewModel: CategoryScreenFragmentViewModel
     private var _binding: FragmentCategoryScreenBinding? = null
     private val binding get() = _binding!!
@@ -54,7 +53,7 @@ class CategoryScreenFragment() : Fragment() {
         val totalSpentWithTwoDecimalFormat = decimalFormat.format(totalSpent)
         val dollarSignTotalSpent = "$$totalSpentWithTwoDecimalFormat"
 
-        val baseAvailable = (expectation?.div(rolloverPeriod))
+        val baseAvailable = expectation?.div(rolloverPeriod)
         val available = baseAvailable?.plus(baseAvailable.times(numberOfDays))?.minus(totalSpent)
         val availableWithTwoDecimalFormat = decimalFormat.format(available)
         val dollarSignAvailable = "$$availableWithTwoDecimalFormat"
@@ -119,7 +118,7 @@ class CategoryScreenFragment() : Fragment() {
         val categoryId = arguments?.getInt("categoryId")!!
         categoryScreenFragmentViewModel.expenses(categoryId).observe(binding.lifecycleOwner!!, {
             Log.i("MYTAG", it.toString())
-            binding.expenseRecyclerView.adapter = ExpenseRecyclerViewAdapter(it, categoryId)
+            binding.expenseRecyclerView.adapter = ExpenseRecyclerViewAdapter(it)
         })
 
     }

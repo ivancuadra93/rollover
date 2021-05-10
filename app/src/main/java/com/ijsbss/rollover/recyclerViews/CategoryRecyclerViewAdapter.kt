@@ -15,9 +15,6 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.databinding.ListItemBinding
 import java.text.DecimalFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<CategoryRecyclerViewAdapter.MyViewHolder>() {
 
@@ -62,13 +59,14 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
         override fun onClick(v: View?) {
             when (v?.id) {
                 R.id.delete_button -> {
+
                     Toast.makeText(v.context, "Deleted " + binding.nameTextView.text, Toast.LENGTH_LONG).show()
 
                     mainFragmentViewModel.deleteCategoryAndExpense(itemID)
                 }
 
                 R.id.edit_button -> {
-                    Toast.makeText(v.context, itemID.toString() + " " + binding.nameTextView.text, Toast.LENGTH_SHORT).show()
+
                     val bundle = bundleOf(
                         ("categoryId" to itemID),
                         ("categoryName" to categoriesList[adapterPosition].name),
@@ -78,7 +76,6 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                         ("categoryColor" to categoriesList[adapterPosition].color),
                         ("threshold" to categoriesList[adapterPosition].threshold),
                         ("date" to categoriesList[adapterPosition].date)
-
                     )
 
                     v.findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment, bundle)
@@ -97,7 +94,6 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                     )
 
                     v.findNavController().navigate(R.id.action_MainFragment_to_CategoryScreenFragment, bundle)
-
                 }
             }
         }

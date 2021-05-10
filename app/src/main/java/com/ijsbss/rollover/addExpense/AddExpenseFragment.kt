@@ -66,20 +66,7 @@ class AddExpenseFragment : Fragment(){
         }
 
         view.findViewById<Button>(R.id.expense_cancel_button).setOnClickListener {
-//            val categoryId = arguments?.getInt("categoryId")!!
-//            val categoryName = arguments?.getString("categoryName")
-//            val categoryColor = arguments?.getInt("categoryColor")
-//            val totalSpent = arguments?.getFloat("totalSpent")
-//            val expectation = arguments?.getFloat("expectation")
-//            val bundle = bundleOf(
-//                    ("categoryId" to categoryId),
-//                    ("categoryName" to categoryName),
-//                    ("categoryColor" to categoryColor),
-//                    ("totalSpent" to totalSpent),
-//                    ("expectation" to expectation)
-//            )
             findNavController().popBackStack()
-            //findNavController().navigate(R.id.action_AddExpenseScreenFragment_to_CategoryScreenFragment, bundle)
         }
     }
 

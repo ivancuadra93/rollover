@@ -1,10 +1,8 @@
 package com.ijsbss.rollover.data.db
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.ijsbss.rollover.data.Relations.CategoryWithExpenses
+import com.ijsbss.rollover.data.relations.CategoryWithExpenses
 import com.ijsbss.rollover.data.entities.Category
-import com.ijsbss.rollover.data.entities.Expense
 
 class CategoryRepository(private val dao: CategoryDao) {
     val categories = dao.getCategories()
@@ -23,10 +21,6 @@ class CategoryRepository(private val dao: CategoryDao) {
 
     suspend fun insert(category: Category){
         dao.insert(category)
-    }
-
-    suspend fun deleteAll(){
-        dao.deleteAll()
     }
 
     suspend fun deleteCategoryAndExpense(categoryId: Int) {

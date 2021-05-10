@@ -9,6 +9,7 @@ import com.ijsbss.rollover.data.db.ExpenseRepository
 import com.ijsbss.rollover.data.entities.Expense
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.util.*
 
 class AddExpenseFragmentViewModel(private val repository: ExpenseRepository) : ViewModel(), Observable{
 
@@ -20,7 +21,7 @@ class AddExpenseFragmentViewModel(private val repository: ExpenseRepository) : V
 
     fun inputExpense(categoryId: Int, totalSpent: Float){
         if(inputName.value != null && inputAmount.value != null){
-            val name = inputName.value!!.toUpperCase()
+            val name = inputName.value!!.toUpperCase(Locale.ROOT)
             val amount = inputAmount.value!!.toFloat()
 
             val newTotalSpent: Float = amount + totalSpent
