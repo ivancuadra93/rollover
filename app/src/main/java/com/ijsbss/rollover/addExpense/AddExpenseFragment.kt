@@ -35,7 +35,7 @@ class AddExpenseFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.expense_save_button).setOnClickListener {
-            if(addExpenseFragmentViewModel.inputName.value != null && addExpenseFragmentViewModel.inputAmount.value != null){
+            if(addExpenseFragmentViewModel.inputName.value != null && addExpenseFragmentViewModel.inputAmount.value != null && addExpenseFragmentViewModel.inputCreditOrDebit.value != null ){
                 val categoryId = arguments?.getInt("categoryId")!!
                 val categoryName = arguments?.getString("categoryName")
                 val categoryColor = arguments?.getInt("categoryColor")

@@ -16,8 +16,8 @@ data class Expense(
         @ColumnInfo(name = "amount")
         val amount: Float,
 
-        @ColumnInfo(name = "accountOptions")
-        val accountOptions: Int,
+        @ColumnInfo(name = "account")
+        val account: String,
 
         @ColumnInfo(name = "date")
         val date: String,

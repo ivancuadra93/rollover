@@ -39,6 +39,7 @@ class ExpenseRecyclerViewAdapter(private val expensesList: MutableList<CategoryW
             binding.expenseAmountView.text = dollarSignAmount
             binding.dateView.text = expense.date
             binding.cardView.setCardBackgroundColor(expensesList[0].category.color)
+            binding.accountView.text = expense.account
         }
     }
 }
