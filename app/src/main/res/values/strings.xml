@@ -20,6 +20,11 @@
     <string name="save">Save</string>
     <string name="addCategory">Add Category</string>
     <string name="rollover">Rollover</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="summary">Summary</string>
 
     <string-array name="colors">
         <item>Red</item>
@@ -29,4 +34,5 @@
         <item>Blue</item>
         <item>Purple</item>
     </string-array>
+
 </resources>

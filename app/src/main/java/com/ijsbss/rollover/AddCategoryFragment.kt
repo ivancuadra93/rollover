@@ -22,7 +22,7 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentAddCategoryBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
         val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
         val repository = CategoryRepository(dao)
