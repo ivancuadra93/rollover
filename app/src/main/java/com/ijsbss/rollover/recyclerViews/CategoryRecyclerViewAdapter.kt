@@ -15,9 +15,6 @@ import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.databinding.ListItemBinding
 import java.text.DecimalFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Category>, private val mainFragmentViewModel: MainFragmentViewModel) : RecyclerView.Adapter<CategoryRecyclerViewAdapter.MyViewHolder>() {
 
@@ -42,6 +39,7 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
 
         init {
             binding.root.findViewById<Button>(R.id.delete_button).setOnClickListener(this)
+            binding.root.findViewById<Button>(R.id.edit_button).setOnClickListener(this)
             binding.root.findViewById<androidx.cardview.widget.CardView>(R.id.card_view).setOnClickListener(this)
             binding.root.findViewById<androidx.cardview.widget.CardView>(R.id.card_view).setOnLongClickListener(this)
         }
@@ -61,9 +59,26 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
         override fun onClick(v: View?) {
             when (v?.id) {
                 R.id.delete_button -> {
+
                     Toast.makeText(v.context, "Deleted " + binding.nameTextView.text, Toast.LENGTH_LONG).show()
 
-                    mainFragmentViewModel.deleteCategory(itemID)
+                    mainFragmentViewModel.deleteCategoryAndExpense(itemID)
+                }
+
+                R.id.edit_button -> {
+
+                    val bundle = bundleOf(
+                        ("categoryId" to itemID),
+                        ("categoryName" to categoriesList[adapterPosition].name),
+                        ("expectation" to categoriesList[adapterPosition].expectation),
+                        ("totalSpent" to categoriesList[adapterPosition].totalSpent),
+                        ("rollover" to categoriesList[adapterPosition].rolloverPeriod),
+                        ("categoryColor" to categoriesList[adapterPosition].color),
+                        ("threshold" to categoriesList[adapterPosition].threshold),
+                        ("date" to categoriesList[adapterPosition].date)
+                    )
+
+                    v.findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment, bundle)
                 }
 
                 R.id.card_view -> {
@@ -79,7 +94,6 @@ class CategoryRecyclerViewAdapter(private val categoriesList: MutableList<Catego
                     )
 
                     v.findNavController().navigate(R.id.action_MainFragment_to_CategoryScreenFragment, bundle)
-
                 }
             }
         }

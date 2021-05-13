@@ -11,7 +11,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/test"
         tools:context=".addCategory.AddCategoryFragment">
 
         <Button
@@ -25,6 +24,7 @@
             app:iconTint="#0C0B0B"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_name"
+            app:layout_constraintVertical_bias="0.0"
             tools:visibility="visible" />
 
         <TextView
@@ -164,7 +164,8 @@
             android:layout_marginEnd="60dp"
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_name" />
+            app:layout_constraintTop_toBottomOf="@+id/header_name"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/header_name"
@@ -173,10 +174,10 @@
             android:background="#DFCBCC"
             android:paddingTop="5sp"
             android:paddingBottom="5sp"
-            android:text="@string/addCategory"
+            android:text="@={ViewModel.headerText}"
             android:textAlignment="center"
             android:textColor="#0E0E0E"
-            android:textSize="36sp"
+            android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

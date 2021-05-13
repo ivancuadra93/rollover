@@ -13,37 +13,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/header_layout"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:orientation="horizontal">
+            android:layout_height="60dp">
 
             <Button
                 android:id="@+id/category_back"
-                android:layout_width="10sp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:backgroundTint="#8E3939"
-                android:translationY="-10dp"
-                app:cornerRadius="0dp"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="0sp"
                 app:icon="@drawable/ic_back_icon"
                 app:iconSize="40dp"
-                app:iconTint="#FFFAFA" />
+                app:iconTint="#FFFAFA"/>
 
             <TextView
                 android:id="@+id/category_name_view"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingStart="-35dp"
-                android:paddingTop="10sp"
-                android:paddingEnd="0dp"
-                android:paddingBottom="10sp"
-                android:text="Category Name"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text="@string/category_here"
+                android:textColor="@color/white"
                 android:textAlignment="center"
-                android:textColor="#FFFCFC"
-                android:textSize="30sp" />
-        </LinearLayout>
+                android:textSize="35sp" />
+
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -155,11 +153,12 @@
                 android:id="@+id/add_expense_button"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:height="70dp"
                 android:backgroundTint="#DFCBCC"
                 android:ellipsize="middle"
-                android:translationX="300dp"
                 app:cornerRadius="50dp"
                 app:icon="@android:drawable/ic_input_add"
                 app:iconTint="#202020" />

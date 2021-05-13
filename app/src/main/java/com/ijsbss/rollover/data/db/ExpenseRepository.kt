@@ -14,10 +14,6 @@ class ExpenseRepository(private val dao: ExpenseDao) {
         dao.updateTotalSpent(categoryId, amount)
     }
 
-    suspend fun deleteAll(){
-        dao.deleteAll()
-    }
-
     suspend fun delete(expenseID: Int){
         dao.delete(expenseID)
     }

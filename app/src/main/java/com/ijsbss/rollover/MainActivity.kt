@@ -4,10 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.navigation.findNavController
 
-class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*/ {
+class MainActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,20 +27,4 @@ class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-//    override fun onBackPressed() {
-//        // do nothing
-//    }
-    /*
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
-        val text = parent.getItemAtPosition(pos).toString()
-        Toast.makeText(parent.getContext(), text, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
-        // Another interface callback
-    }
-    */
 }

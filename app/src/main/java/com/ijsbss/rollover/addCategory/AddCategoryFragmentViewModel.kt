@@ -15,6 +15,9 @@ import java.util.*
 class AddCategoryFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
 
     @Bindable
+    val headerText = MutableLiveData<String>()
+
+    @Bindable
     val inputName = MutableLiveData<String>()
 
     @Bindable
@@ -29,7 +32,11 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     @Bindable
     val inputThreshold = MutableLiveData<String>()
 
-    fun inputCategory(){
+    init {
+        headerText.value = "Add Category"
+    }
+
+    fun inputCategory(updating: Boolean, categoryId: Int, totalSpent: Float, date: String){
         if(inputName.value != null && inputExpectation.value != null && inputRolloverPeriod.value != null && inputColor.value != null && inputThreshold.value != null){
             val name = inputName.value!!
             val expectation = inputExpectation.value!!
@@ -37,8 +44,15 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
             val color = colorConverter(inputColor)
             val threshold = inputThreshold.value!!
 
-            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(),
-                LocalDate.now().toString(), 0))
+
+            if (updating) {
+                insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), totalSpent, rolloverPeriod.toByte(), color, threshold.toFloat(), date, 0))
+                delete(categoryId)
+                updateCategoryId(categoryId)
+            }
+            else{
+                insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), LocalDate.now().toString(), 0))
+            }
 
             inputName.value = null
             inputExpectation.value = null
@@ -52,7 +66,6 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
         return when(color.value){
             "Red" -> RED
             "Orange" -> ORANGE
-            "Yellow" -> YELLOW
             "Green" -> GREEN
             "Blue" -> BLUE
             "Purple" -> PURPLE
@@ -65,6 +78,18 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     private fun insert(category: Category){
         viewModelScope.launch {
             repository.insert(category)
+        }
+    }
+
+    private fun delete(categoryId: Int){
+        viewModelScope.launch {
+            repository.deleteCategoryOnly(categoryId)
+        }
+    }
+
+    private fun updateCategoryId(categoryId: Int){
+        viewModelScope.launch {
+            repository.updateCategoryId(categoryId)
         }
     }
 

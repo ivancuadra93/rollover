@@ -12,105 +12,87 @@
         android:id="@+id/main_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="0dp"
         android:orientation="vertical">
 
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/header_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="60dp">
 
             <Button
                 android:id="@+id/summary_button"
-                android:layout_width="65dp"
+                android:layout_width="55dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_weight="1"
+                android:layout_alignParentStart="true"
                 android:backgroundTint="#A1A189"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:paddingLeft="2dp"
-                android:paddingTop="0dp"
-                android:paddingRight="2dp"
-                android:paddingBottom="0dp"
-                android:text="@string/summary"
                 app:cornerRadius="0sp"
                 app:icon="@drawable/ic_summary_icon"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
                 app:iconSize="40dp"
                 app:iconTint="#000000" />
 
             <TextView
                 android:id="@+id/rollover_header"
-                android:layout_width="288dp"
-                android:layout_height="54dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
                 android:background="#A1A189"
-                android:paddingStart="60sp"
-                android:paddingEnd="10sp"
+                android:paddingTop="5dp"
                 android:text="@string/rollover"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="40sp" />
+                android:textSize="35sp" />
 
             <Button
                 android:id="@+id/search_button"
-                android:layout_width="65dp"
+                android:layout_width="55dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_toStartOf="@id/setting_button"
                 android:backgroundTint="#A1A189"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:paddingStart="0dp"
-                android:paddingTop="0dp"
-                android:paddingEnd="0dp"
-                android:paddingBottom="0dp"
-                android:text="@string/search"
                 app:cornerRadius="0sp"
                 app:icon="?android:attr/actionModeWebSearchDrawable"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
                 app:iconSize="35dp"
                 app:iconTint="#000000" />
 
             <Button
                 android:id="@+id/setting_button"
-                android:layout_width="65dp"
+                android:layout_width="55dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_alignParentEnd="true"
                 android:backgroundTint="#A1A189"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:paddingLeft="2dp"
-                android:paddingTop="0dp"
-                android:paddingRight="2dp"
-                android:paddingBottom="0dp"
-                android:text="@string/settings"
                 app:cornerRadius="0sp"
                 app:icon="@drawable/ic_settings_icon"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
                 app:iconSize="35dp"
                 app:iconTint="#000000" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="217dp"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
             <Button
                 android:id="@+id/add_category_button"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:height="70dp"
                 android:backgroundTint="#DFCBCC"
                 android:ellipsize="middle"
-                android:translationX="300dp"
                 app:cornerRadius="50dp"
                 app:icon="@android:drawable/ic_input_add"
                 app:iconTint="#202020" />
@@ -118,7 +100,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="370dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 tools:itemCount="3"
                 tools:listitem="@layout/list_item" />

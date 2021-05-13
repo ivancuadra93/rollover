@@ -21,6 +21,10 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var addCategoryFragmentViewModel: AddCategoryFragmentViewModel
     private var _binding: FragmentAddCategoryBinding? = null
     private val binding get() = _binding!!
+    private var updating: Boolean = false
+    private var categoryId: Int = 0
+    private var totalSpent: Float = 0.0F
+    private var date: String = ""
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_category, container, false)
@@ -30,6 +34,20 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.viewModel = addCategoryFragmentViewModel
         binding.lifecycleOwner = this
         // Inflate the layout for this fragment
+
+        if (arguments != null) {
+            categoryId = arguments?.getInt("categoryId")!!
+            addCategoryFragmentViewModel.inputName.value = arguments?.getString("categoryName")
+            addCategoryFragmentViewModel.inputExpectation.value = arguments?.getFloat("expectation").toString()
+            totalSpent = arguments?.getFloat("totalSpent")!!
+            addCategoryFragmentViewModel.inputRolloverPeriod.value = arguments?.getByte("rollover").toString()
+            addCategoryFragmentViewModel.inputColor.value = arguments?.getInt("categoryColor").toString() // fix
+            addCategoryFragmentViewModel.inputThreshold.value = arguments?.getFloat("threshold").toString()
+            date = arguments?.getString("date")!!
+            updating = true
+            addCategoryFragmentViewModel.headerText.value = "Edit Category"
+        }
+
         return binding.root
     }
 
@@ -43,12 +61,12 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //save click event
         view.findViewById<Button>(R.id.save_button).setOnClickListener {
             if((addCategoryFragmentViewModel.inputName.value != null && addCategoryFragmentViewModel.inputExpectation.value != null && addCategoryFragmentViewModel.inputRolloverPeriod.value != null && addCategoryFragmentViewModel.inputThreshold.value != null )) {
-                addCategoryFragmentViewModel.inputCategory()
+                addCategoryFragmentViewModel.inputCategory(updating, categoryId, totalSpent, date)
 
                 findNavController().navigate(R.id.action_AddCategoryFragment_to_MainFragment)
             }
             else{
-                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_LONG).show()
+                Toast.makeText(view.context, "Please Enter All The Information", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -70,5 +88,4 @@ class AddCategoryFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onDestroyView()
         _binding = null
     }
-
 }
