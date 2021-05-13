@@ -1,16 +1,11 @@
 package com.ijsbss.rollover
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*/ {
 
@@ -34,6 +29,10 @@ class MainActivity : AppCompatActivity() /*, AdapterView.OnItemSelectedListener*
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+//    override fun onBackPressed() {
+//        // do nothing
+//    }
     /*
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         // An item was selected. You can retrieve the selected item using

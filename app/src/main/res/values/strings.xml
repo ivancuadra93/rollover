@@ -4,6 +4,9 @@
     <!-- Strings used for fragments for navigation -->
     <string name="main_fragment_label">Main Fragment</string>
     <string name="add_category_fragment_label">Add Category Fragment</string>
+    <string name="category_screen_fragment_label">Category Screen Fragment</string>
+    <string name="add_expense_screen_fragment_label">Add Expense Screen Fragment</string>
+
     <string name="color">Color</string>
     <string name="biweekly">Biweekly</string>
 
@@ -25,11 +28,21 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="summary">Summary</string>
+    <string name="add_expense">Add Expense</string>
+<!--    <string name="name">Name</string>-->
+    <string name="debit">Debit</string>
+    <string name="credit">Credit</string>
+    <string name="account">Account</string>
+    <string name="amount">Amount</string>
+    <string name="available">Available</string>
+    <string name="spent">Spent</string>
+    <string name="rolled_over">Rolled over</string>
+    <string name="dollar_sign">$</string>
 
     <string-array name="colors">
         <item>Red</item>
         <item>Orange</item>
-        <item>Yellow</item>
+<!--        <item>Yellow</item>-->
         <item>Green</item>
         <item>Blue</item>
         <item>Purple</item>

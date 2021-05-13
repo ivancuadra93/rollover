@@ -7,23 +7,59 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="com.ijsbss.rollover.MainFragment"
+        android:name="com.ijsbss.rollover.mainFragment.MainFragment"
         android:label="@string/main_fragment_label"
         tools:layout="@layout/fragment_main">
 
         <action
             android:id="@+id/action_MainFragment_to_AddCategoryFragment"
             app:destination="@id/AddCategoryFragment" />
+
+        <action
+            android:id="@+id/action_MainFragment_to_CategoryScreenFragment"
+            app:destination="@id/CategoryScreenFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/AddCategoryFragment"
-        android:name="com.ijsbss.rollover.AddCategoryFragment"
+        android:name="com.ijsbss.rollover.addCategory.AddCategoryFragment"
         android:label="@string/add_category_fragment_label"
         tools:layout="@layout/fragment_add_category">
 
         <action
             android:id="@+id/action_AddCategoryFragment_to_MainFragment"
-            app:destination="@id/MainFragment" />
+            app:destination="@id/MainFragment"
+            app:popUpTo="@id/MainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/CategoryScreenFragment"
+        android:name="com.ijsbss.rollover.categoryScreen.CategoryScreenFragment"
+        android:label="@string/category_screen_fragment_label"
+        tools:layout="@layout/fragment_category_screen">
+
+        <action
+            android:id="@+id/action_CategoryScreenFragment_to_AddExpenseScreenFragment"
+            app:destination="@id/AddExpenseScreenFragment" />
+        <action
+            android:id="@+id/action_CategoryScreenFragment_to_MainFragment"
+            app:destination="@id/MainFragment"
+            app:popUpTo="@id/MainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AddExpenseScreenFragment"
+        android:name="com.ijsbss.rollover.addExpense.AddExpenseFragment"
+        android:label= "@string/add_expense_screen_fragment_label"
+        tools:layout="@layout/fragment_add_expense_screen">
+
+        <action
+            android:id="@+id/action_AddExpenseScreenFragment_to_CategoryScreenFragment"
+            app:destination="@id/CategoryScreenFragment"
+            app:popUpTo="@id/CategoryScreenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>

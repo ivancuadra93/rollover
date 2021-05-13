@@ -1,8 +1,7 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.mainFragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -12,12 +11,19 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ijsbss.rollover.R
 import com.ijsbss.rollover.data.db.AppDatabase
 import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.databinding.FragmentMainBinding
+import com.ijsbss.rollover.recyclerViews.CategoryRecyclerViewAdapter
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -28,6 +34,18 @@ class MainFragment : Fragment(), View.OnClickListener  {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
+        val repository = CategoryRepository(dao)
+        val factory = MainFragmentViewModelFactory(repository)
+        mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
+
+        mainFragmentViewModel.updateTotalSpentToZero(this, this.context)
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         val dao = AppDatabase.getInstance(requireActivity().application).categoryDao()
@@ -36,6 +54,7 @@ class MainFragment : Fragment(), View.OnClickListener  {
         mainFragmentViewModel = ViewModelProvider(this, factory).get(MainFragmentViewModel::class.java)
         binding.myViewModel = mainFragmentViewModel
         binding.lifecycleOwner = this
+
         initRecyclerView()
 
         return binding.root
@@ -45,12 +64,13 @@ class MainFragment : Fragment(), View.OnClickListener  {
 
         super.onViewCreated(view, savedInstanceState)
 
+        view.findViewById<LinearLayout>(R.id.main_linear_layout).setOnClickListener(this)
+
         view.findViewById<Button>(R.id.add_category_button).setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_AddCategoryFragment)
         }
-
-        view.findViewById<LinearLayout>(R.id.main_linear_layout).setOnClickListener(this)
     }
+
 
     private fun initRecyclerView(){
         binding.categoryRecyclerView.layoutManager = LinearLayoutManager(this.context)
@@ -60,14 +80,14 @@ class MainFragment : Fragment(), View.OnClickListener  {
     private fun displayCategoriesList(){
         mainFragmentViewModel.categories.observe(binding.lifecycleOwner!!, {
             Log.i("MYTAG", it.toString())
-            binding.categoryRecyclerView.adapter = MyRecyclerViewAdapter(it, binding.myViewModel!!)
+            binding.categoryRecyclerView.adapter = CategoryRecyclerViewAdapter(it, binding.myViewModel!!)
         })
     }
 
 
     override fun onClick(v: View?) {
-        Toast.makeText(v?.context,binding.categoryRecyclerView.adapter?.itemCount.toString() , Toast.LENGTH_SHORT).show()
         var i = 0
+
         while(i < binding.categoryRecyclerView.adapter!!.itemCount  ) {
             binding.categoryRecyclerView[i].findViewById<LinearLayout>(R.id.edit_and_delete_layout).visibility = GONE
             i++

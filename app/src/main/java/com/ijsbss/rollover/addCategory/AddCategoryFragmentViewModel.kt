@@ -1,4 +1,4 @@
-package com.ijsbss.rollover
+package com.ijsbss.rollover.addCategory
 
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
@@ -9,6 +9,7 @@ import com.ijsbss.rollover.data.db.CategoryRepository
 import com.ijsbss.rollover.data.entities.Category
 import com.ijsbss.rollover.utilities.*
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import java.util.*
 
 class AddCategoryFragmentViewModel(private val repository: CategoryRepository) : ViewModel(), Observable {
@@ -28,7 +29,7 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
     @Bindable
     val inputThreshold = MutableLiveData<String>()
 
-    fun saveOrUpdate(){
+    fun inputCategory(){
         if(inputName.value != null && inputExpectation.value != null && inputRolloverPeriod.value != null && inputColor.value != null && inputThreshold.value != null){
             val name = inputName.value!!
             val expectation = inputExpectation.value!!
@@ -36,7 +37,8 @@ class AddCategoryFragmentViewModel(private val repository: CategoryRepository) :
             val color = colorConverter(inputColor)
             val threshold = inputThreshold.value!!
 
-            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(), 0, 0))
+            insert(Category(0, name.toUpperCase(Locale.ROOT), expectation.toFloat(), 0.00F, rolloverPeriod.toByte(), color, threshold.toFloat(),
+                LocalDate.now().toString(), 0))
 
             inputName.value = null
             inputExpectation.value = null
